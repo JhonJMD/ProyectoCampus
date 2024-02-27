@@ -1,5 +1,7 @@
+import ui.menu as m
+
 def main():
-    pass
+    m.menuMain()
 
 if __name__ == '__main__':
     main()

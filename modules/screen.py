@@ -5,18 +5,17 @@ import sys
 #Limpiar pantalla según el sistema operativo
 
 def clean_screen():
-    if sys.system == 'Windows':
-        os.system('cls')
-    elif sys.system == 'Linux':
-        os.system('clear')
+    if sys.platform == "linux" or sys.platform == "darwin":
+        os.system("clear")
+    else:
+        os.system("cls")
 
 
 #Pausar pantalla según el sistema operativo
         
 def pause_screen():
-    if sys.system == 'Windows':
-        os.system('pause')
-
-    elif sys.system == 'Linux':
-        input('Presiona cualquier tecla para continuar...')
+    if sys.platform == "linux" or sys.platform == "darwin":
+        input("Presione una tecla para continuar...")
+    else:
+        os.system("pause")
 
