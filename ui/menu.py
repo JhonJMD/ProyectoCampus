@@ -11,9 +11,9 @@ def menuMain():
     if (op == '1'):
         menuActivos()
     elif (op == '2'):
-        pass
+        menuPersonal()
     elif (op == '3'):
-        pass
+        menuZonas()
     elif (op == '4'):
         pass
     elif (op == '5'):
@@ -23,27 +23,73 @@ def menuMain():
     elif (op == '7'):
         pass
     else:
-        print('opcion no registrada......')
-        
-    sc.pause_screen()
+        sc.clean_screen()
+        print('Opcion no registrada......')
+        sc.pause_screen()
+        menuMain()
 
 def menuActivos():
     sc.clean_screen()
     t.headerActivo()
     options = [['1.' ,'Agregar'], ['2.','Editar'], ['3.','Eliminar'], ['4.','Buscar'], ['5.','Regresar al Menu Principal']]
     print(tabulate(options, tablefmt='grid'))
-    sc.pause_screen()
+    op = input('\n>> ')
+    if (op == '1'):
+        pass
+    elif (op == '2'):
+        pass
+    elif (op == '3'):
+        pass
+    elif (op == '4'):
+        pass
+    elif (op == '5'):
+        menuMain()
+    else:
+        sc.clean_screen()
+        print('Opcion no registrada......')
+        sc.pause_screen()
+        menuActivos()
 
 def menuPersonal():
     sc.clean_screen()
     t.headerPersonal()
     options = [['1.' ,'Agregar'], ['2.','Editar'], ['3.','Eliminar'], ['4.','Buscar'], ['5.','Regresar al Menu Principal']]
     print(tabulate(options, tablefmt='grid'))
-    sc.pause_screen()
+    op = input('\n>> ')
+    if (op == '1'):
+        pass
+    elif (op == '2'):
+        pass
+    elif (op == '3'):
+        pass
+    elif (op == '4'):
+        pass
+    elif (op == '5'):
+        menuMain()
+    else:
+        sc.clean_screen()
+        print('Opcion no registrada......')
+        sc.pause_screen()
+        menuPersonal()
 
 def menuZonas():
     sc.clean_screen()
     t.headerZonas()
     options = [['1.' ,'Agregar'], ['2.','Editar'], ['3.','Eliminar'], ['4.','Buscar'], ['5.','Regresar al Menu Principal']]
     print(tabulate(options, tablefmt='grid'))
-    sc.pause_screen()
+    op = input('\n>> ')
+    if (op == '1'):
+        pass
+    elif (op == '2'):
+        pass
+    elif (op == '3'):
+        pass
+    elif (op == '4'):
+        pass
+    elif (op == '5'):
+        menuMain()
+    else:
+        sc.clean_screen()
+        print('Opcion no registrada......')
+        sc.pause_screen()
+        menuPersonal()
