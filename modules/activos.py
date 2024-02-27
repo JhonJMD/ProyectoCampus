@@ -11,8 +11,8 @@ def añadir_activo():
 
         file.screen.clean_screen()
 
-        file.check_file('activos.json')
-        filedata = file.read_file('activos.json')
+        file.check_file('activos.json') 
+        filedata = file.read_file('activos.json') #carga el contenido del archivo a filedata
         activo =  {
                         'codCampus' : '',
                         'nombre' : '',
@@ -33,17 +33,17 @@ def añadir_activo():
         codCampus = input('Ingrese el codigo del activo a registrar: ')
         
        
-        if codCampus in filedata.keys():
+        if codCampus in filedata.keys(): #Verificar si el codigo ya se encuentra registrado
             print('Este codigo ya se encuentra registrado, si desea editarlo vaya a la sección de editar activos')
             file.screen.pause_screen()
             
     
         else: 
                   
-            activo['codCampus'] = codCampus
+            activo['codCampus'] = codCampus 
             activo['nombre'] = input('Ingrese el nombre del activo: ')
             activo['tipo'] = input('Ingrese el tipo de activo (cpu, mouse, teclado, monitor): ')
-            while True: 
+            while True: #Verifica que el valor unitario sea un precio real
                 try: 
                     activo['valor und'] = float(input('Ingrese el valor unitario del activo: '))
                     break
@@ -54,11 +54,12 @@ def añadir_activo():
 
             activo['nro serial'] = input('Ingrese el número serial del activo: ')
 
-            filedata.update({codCampus : activo})
+            filedata.update({codCampus : activo}) #Actualiza el filedata con el contenido dado
 
-            file.update_file('activos.json', filedata)
+            file.update_file('activos.json', filedata) #Actualiza el archivo json con el nuevo activo
             
-
+        #Bucle para decidir si se agrega otro activo o no
+            
         while True:
             file.screen.clean_screen()
             yes_or_not = input('¿Desea registrar otro activo? s(sí) -- ENTER(no): ')
@@ -74,7 +75,7 @@ def añadir_activo():
     
 
 
-añadir_activo()
+
 
 
 
