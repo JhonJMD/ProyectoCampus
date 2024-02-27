@@ -4,7 +4,7 @@ import jsonfiles as file
 
 #Función para agregar el contenido al diccionario de activos en el archivo json 
 
-def añadir_activo(): 
+def addActi(): 
 
     is_add_active = True
     while is_add_active: 
@@ -70,15 +70,11 @@ def añadir_activo():
                 break
         
 
+def modifyActi():
+    pass
 
+def delActi():
+    pass
 
-    
-
-
-
-
-
-
-
-
-
+def searchActi():
+    pass
