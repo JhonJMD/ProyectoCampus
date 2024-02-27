@@ -1,4 +1,4 @@
-import modules.screen as screen
+import screen as screen
 import os 
 import json
 
