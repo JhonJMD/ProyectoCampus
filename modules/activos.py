@@ -140,7 +140,7 @@ def delActi():
     pass
 
 def searchActi():
-    pa
+    pass
 
 
 modifyActi()
