@@ -1,5 +1,6 @@
 import jsonfiles as file
 import screen as scr
+from tabulate import tabulate
 
 
 
@@ -109,6 +110,7 @@ def modifyActi():
                                             break
                                         except:
                                             print('Digite un valor unitario válido')
+                                            scr.clean_screen()
 
                                     acti_dict[key] = new_value
                                     break
@@ -134,8 +136,29 @@ def modifyActi():
 def delActi():
     pass
 
+#Función para buscar un activo especifico
 def searchActi():
-    pass
+    search_running = True
+    
+    while search_running:
+        headers_lst = []
+        values = []
+        
+        file.check_file('activos.json')
+        filedata = file.read_file('activos.json')
+        
+        code_to_search = input('Ingrese el codigo del activo a buscar: ')
+        
+        if code_to_search in filedata.keys(): #Si el codigo está registrado empieza el proceso
+            for key, value in filedata[code_to_search].items(): 
+                if key != 'historial':
+                    print(f'{key} : {value}')
+            
+       
 
-
-modifyActi()
+                
+                
+        
+        
+        
+searchActi()
