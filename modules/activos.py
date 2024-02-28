@@ -1,4 +1,5 @@
 import jsonfiles as file
+import screen as scr
 
 
 
@@ -9,24 +10,24 @@ def addActi():
     is_add_active = True
     while is_add_active: 
 
-        file.screen.clean_screen()
+        scr.clean_screen()
 
         file.check_file('activos.json') 
         filedata = file.read_file('activos.json') #carga el contenido del archivo a filedata
         activo =  {
-                        'codCampus' : '',
+                        'codigo' : '',
                         'nombre' : '',
-                        'codTrans' : '327',
-                        'nroFormu' : '966217823',
+                        'transaccion' : '327',
+                        'formulario' : '966217823',
                         'marca' : 'Compumax',
                         'categoria ' : 'Equipo de computo',
                         'tipo' : '',
                         'valor und' : 0.0,
                         'proveedor' : 'Compumax',
                         'nro serial' : '',
-                        'empresaRes' : 'CampusLands',
+                        'responsable' : 'CampusLands',
                         'estado' : '0',
-                        'histActivo' : {}
+                        'historial' : {}
                         
         }
 
@@ -35,24 +36,24 @@ def addActi():
        
         if codCampus in filedata.keys(): #Verificar si el codigo ya se encuentra registrado
             print('Este codigo ya se encuentra registrado, si desea editarlo vaya a la sección de editar activos')
-            file.screen.pause_screen()
+            scr.pause_screen()
             
     
         else: 
                   
-            activo['codCampus'] = codCampus 
-            activo['nombre'] = input('Ingrese el nombre del activo: ')
-            activo['tipo'] = input('Ingrese el tipo de activo (cpu, mouse, teclado, monitor): ')
+            activo['Codigo'] = codCampus 
+            activo['Nombre'] = input('Ingrese el nombre del activo: ')
+            activo['Tipo'] = input('Ingrese el tipo de activo (cpu, mouse, teclado, monitor): ')
             while True: #Verifica que el valor unitario sea un precio real
                 try: 
-                    activo['valor und'] = float(input('Ingrese el valor unitario del activo: '))
+                    activo['Valor und'] = float(input('Ingrese el valor unitario del activo: '))
                     break
                 except: 
                     print('Por favor digite un valor válido')
-                    file.screen.pause_screen()
+                    scr.pause_screen()
 
 
-            activo['nro serial'] = input('Ingrese el número serial del activo: ')
+            activo['Nro serial'] = input('Ingrese el número serial del activo: ')
 
             filedata.update({codCampus : activo}) #Actualiza el filedata con el contenido dado
 
@@ -61,7 +62,7 @@ def addActi():
         #Bucle para decidir si se agrega otro activo o no
             
         while True:
-            file.screen.clean_screen()
+            scr.clean_screen()
             yes_or_not = input('¿Desea registrar otro activo? s(sí) -- ENTER(no): ')
             if yes_or_not == ('s' or 'S'):
                 break
@@ -69,12 +70,74 @@ def addActi():
                 is_add_active = False
                 break
         
-
+#Función para modificar el contenido del archivo de activos.json
 def modifyActi():
-    pass
+    modify_running = True
+    while modify_running:
+        scr.clean_screen()
+        file.check_file('activos.json') #Chequea si el archivo existe y si no lo crea
+        filedata = file.read_file('activos.json') #Carga el archivo a una variable python
+
+        if len(filedata) == 0: #Revisa si hay contenido o no dentro del archivo
+            print('No se encuentra ningún activo registrado')
+            break
+        while True:
+            scr.clean_screen()
+            code_to_modify = input('Ingrese el codigo del activo que desea modificar: ')
+
+            if code_to_modify in filedata.keys(): #Si el codigo está registrado empieza el proceso
+                acti_dict = filedata[code_to_modify] 
+                for key, value in acti_dict.items(): 
+                    scr.clean_screen()
+                    #Imprime los valores que se pueden modificar y quita algunos que no.
+                    if (key != 'historial') and (key != 'codigo') and (key != 'estado') and (key != 'codCampus'):
+                        print(f'{key} : {value}')
+                        print('')
+                        while True:
+                            modify_or_not = str(input('¿Desea modificar esta información? s(sí) - n(no)')).upper()
+
+                            if modify_or_not == 'S':
+                                if key != 'valor und':
+                                    new_value = input(f'Ingrese la nueva información para "{key}": ')
+                                    acti_dict[key] = new_value
+                                    break
+                                
+                                elif key == 'valor und':
+                                    while True:
+                                        try:
+                                            new_value = float(input(f'Ingrese la nueva información para "{key}": '))
+                                            break
+                                        except:
+                                            print('Digite un valor unitario válido')
+
+                                    acti_dict[key] = new_value
+                                    break
+                            
+                            elif modify_or_not == 'N':
+                                break
+                break                
+            else:
+                print('El codigo no se encuentra registrado')
+                scr.pause_screen()
+                
+             
+            
+        file.update_file('activos.json', filedata)  
+        scr.clean_screen()
+        print('Se ha modificado la información exitosamente')
+        question = '¿Desea modificar otro activo? s(sí) -- n(no): '
+        file.quit_loop(question, modify_running)
+
+              
+
+
+
 
 def delActi():
     pass
 
 def searchActi():
     pass
+
+
+modifyActi()

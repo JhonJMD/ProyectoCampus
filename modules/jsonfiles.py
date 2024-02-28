@@ -1,4 +1,4 @@
-import screen as screen
+
 import os 
 import json
 
@@ -9,7 +9,6 @@ BASE = 'data/'
 #Recibe: el nombre del archivo
 
 def check_file(file : str): 
-    screen.clean_screen()
 
     if not os.path.isfile(BASE+file):
 
@@ -36,4 +35,16 @@ def update_file(file : str, contenido):
         json.dump(contenido, update_file, indent = 2)
 
 
-
+#Función para preguntar si desea seguir la ejecución de una función o salir 
+#Recibe: La pregunta que se desea hacer en forma de variable
+#        el nombre del loop que desea terminar 
+    
+def quit_loop(pregunta : str, nombre_bucle : bool):
+     while True:
+        yes_or_not = input(pregunta).upper()
+        if yes_or_not == 'S':
+            break
+        elif yes_or_not == 'N':
+            nombre_bucle = False
+            break
+        
