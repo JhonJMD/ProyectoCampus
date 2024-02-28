@@ -122,10 +122,7 @@ def modifyActi():
                 break                
             else:
                 print('El codigo no se encuentra registrado')
-                scr.pause_screen()
-                
-             
-            
+                scr.pause_screen()  
         file.update_file('activos.json', filedata)  
         scr.clean_screen()
         print('Se ha modificado la información exitosamente')
@@ -137,8 +134,6 @@ def modifyActi():
             elif yes_or_not == 'N':
                 modify_running = False
                 break
-
-#Función para borrar un activo del archivo .json           
 
 def delActi():
     del_acti = True
