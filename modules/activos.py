@@ -1,5 +1,5 @@
-import jsonfiles as file
-import screen as scr
+import modules.jsonfiles as file
+import modules.screen as scr
 from tabulate import tabulate
 
 #Función para agregar el contenido al diccionario de activos en el archivo json 
@@ -114,13 +114,14 @@ def modifyActi():
                 modify_running = False
                 break
 
+#Función para borrar un activo
 def delActi():
     del_acti = True
     while del_acti:
         scr.clean_screen()
         file.check_file('activos.json')
         filedata = file.read_file('activos.json')  
-        if len(filedata) == 0:
+        if len(filedata) == 0: #Si no hay activos registrados no entra al proceso de eliminación
             print('No hay activos registrados')
             scr.pause_screen()
             del_acti = False
