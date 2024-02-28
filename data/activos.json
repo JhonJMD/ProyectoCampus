@@ -1,6 +1,6 @@
 {
   "1": {
-    "codigo": "",
+    "codigo": "1243",
     "nombre": "Jhoan",
     "transaccion": "156",
     "formulario": "966217823",
@@ -12,7 +12,6 @@
     "nro serial": "1564",
     "responsable": "CampusLands",
     "estado": "0",
-    "historial": {},
-    "codCampus": "1"
+    "historial": {}
   }
 }
