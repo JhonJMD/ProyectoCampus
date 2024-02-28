@@ -158,10 +158,10 @@ def searchActi():
         
         if code_to_search in filedata.keys(): #Si el codigo está registrado empieza el proceso
             for key, value in filedata[code_to_search].items(): 
-                headers_lst.append(key)
-                values.append(value)
-                
-        print(tabulate(values, headers = headers_lst, tablefmt = 'grid'))
+                if key != 'historial':
+                    print(f'{key} : {value}')
+            
+       
 
                 
                 
