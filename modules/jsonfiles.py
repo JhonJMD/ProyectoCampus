@@ -13,7 +13,7 @@ def check_file(file : str):
     if not os.path.isfile(BASE+file):
 
         with open(BASE+file, 'w') as create_file:
-            json.dump({}, create_file, indent = 2)
+            json.dump({}, create_file, indent = 4)
     
     else: 
         pass
@@ -32,7 +32,7 @@ def read_file(file : str):
 
 def update_file(file : str, contenido):
     with open (BASE+file, 'w+') as update_file:
-        json.dump(contenido, update_file, indent = 2)
+        json.dump(contenido, update_file, indent = 4)
 
 
 

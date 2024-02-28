@@ -44,12 +44,16 @@ def menuActivos():
     op = input('\n>> ')
     if (op == '1'):
         mas.addActi()
+        menuActivos()
     elif (op == '2'):
         mas.modifyActi()
+        menuActivos()
     elif (op == '3'):
         mas.delActi()
+        menuActivos()
     elif (op == '4'):
         mas.searchActi()
+        menuActivos()
     elif (op == '5'):
         menuMain()
     else:
@@ -66,12 +70,16 @@ def menuPersonal():
     op = input('\n>> ')
     if (op == '1'):
         mp.addPer()
+        menuPersonal()
     elif (op == '2'):
         mp.modifyPer()
+        menuPersonal()
     elif (op == '3'):
         mp.delPer()
+        menuPersonal()
     elif (op == '4'):
         mp.searchPer()
+        menuPersonal()
     elif (op == '5'):
         menuMain()
     else:
@@ -88,12 +96,16 @@ def menuZonas():
     op = input('\n>> ')
     if (op == '1'):
         mz.addZone()
+        menuZonas()
     elif (op == '2'):
         mz.modifyZone()
+        menuZonas()
     elif (op == '3'):
         mz.delZone()
+        menuZonas()
     elif (op == '4'):
         mz.searchZone()
+        menuZonas()
     elif (op == '5'):
         menuMain()
     else:
@@ -110,8 +122,10 @@ def menuAsignacion():
     op = input('\n>> ')
     if (op == '1'):
         ma.createAsig()
+        menuAsignacion()
     elif (op == '2'):
         ma.searchAsig()
+        menuAsignacion()
     elif (op == '3'):
         menuMain()
     else:
@@ -128,14 +142,19 @@ def menuReportes():
     op = input('\n>> ')
     if (op =='1'):
         mr.listAllActi()
+        menuReportes()
     elif (op == '2'):
         mr.listActiCat()
+        menuReportes()
     elif (op == '3'):
         mr.listActiDama()
+        menuReportes()
     elif (op == '4'):
         mr.listActiAsig()
+        menuReportes()
     elif (op == '5'):
         mr.listHistoMov()
+        menuReportes()
     elif (op == '6'):
         menuMain()
     else:
@@ -152,12 +171,16 @@ def menuMovActi():
     op = input('\n>> ')
     if (op == '1'):
         mm.returnActi()
+        menuMovActi()
     elif (op == '2'):
         mm.cancelActi()
+        menuMovActi()
     elif (op == '3'):
         mm.changeAsig()
+        menuMovActi()
     elif (op == '4'):
         mm.sendWarran()
+        menuMovActi()
     elif (op == '5'):
         menuMain()
     else:

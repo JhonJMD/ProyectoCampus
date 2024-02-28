@@ -1,5 +1,5 @@
-import jsonfiles as file
-import screen as scr
+import modules.jsonfiles as file
+import modules.screen as scr
 from tabulate import tabulate
 
 #Función para agregar el contenido al diccionario de activos en el archivo json 
@@ -171,11 +171,6 @@ def searchActi():
             if code_to_search == '':
                 search_running = False
                 return
-            #Imprimir toda la información del codigo ingresado
-            if code_to_search in filedata.keys():
-                for key, value in filedata[code_to_search]:
-                    print(f'{key} : {value}')
-            code_to_search = input('Ingrese el codigo del activo a buscar: ')
             #Imprimir toda la información del codigo ingresado
             if code_to_search in filedata.keys(): #Si el codigo está registrado empieza el proceso
                 for key, value in filedata[code_to_search].items(): 
