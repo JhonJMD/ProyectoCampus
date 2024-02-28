@@ -1,32 +1,18 @@
 {
-  "156": {
-    "codCampus": "156",
-    "nombre": "asd",
-    "codTrans": "327",
-    "nroFormu": "966217823",
-    "marca": "Compumax",
-    "categoria ": "Equipo de computo",
-    "tipo": "aasd",
-    "valor und": 456.0,
-    "proveedor": "Compumax",
-    "nro serial": "asd",
-    "empresaRes": "CampusLands",
-    "estado": "0",
-    "histActivo": {}
-  },
   "1": {
-    "codCampus": "1",
-    "nombre": "asd",
-    "codTrans": "327",
-    "nroFormu": "966217823",
-    "marca": "Compumax",
+    "codigo": "",
+    "nombre": "Jhoan",
+    "transaccion": "156",
+    "formulario": "966217823",
+    "marca": "Hola",
     "categoria ": "Equipo de computo",
     "tipo": "asd",
-    "valor und": 1897.0,
+    "valor und": 1564.0,
     "proveedor": "Compumax",
-    "nro serial": "asd",
-    "empresaRes": "CampusLands",
+    "nro serial": "1564",
+    "responsable": "CampusLands",
     "estado": "0",
-    "histActivo": {}
+    "historial": {},
+    "codCampus": "1"
   }
 }

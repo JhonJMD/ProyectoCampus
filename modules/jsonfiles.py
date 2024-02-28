@@ -1,4 +1,4 @@
-import screen as screen
+
 import os 
 import json
 
@@ -9,7 +9,6 @@ BASE = 'data/'
 #Recibe: el nombre del archivo
 
 def check_file(file : str): 
-    screen.clean_screen()
 
     if not os.path.isfile(BASE+file):
 
@@ -34,6 +33,8 @@ def read_file(file : str):
 def update_file(file : str, contenido):
     with open (BASE+file, 'w+') as update_file:
         json.dump(contenido, update_file, indent = 2)
+
+
 
 
 
