@@ -15,7 +15,9 @@ def addActi():
 
         file.check_file('activos.json') 
         filedata = file.read_file('activos.json') #carga el contenido del archivo a filedata
-        activo =  {
+        activo =  {     
+                   
+                        'codCampus' : '',
                         'codigo' : '',
                         'nombre' : '',
                         'transaccion' : '327',
@@ -42,19 +44,19 @@ def addActi():
     
         else: 
                   
-            activo['Codigo'] = codCampus 
-            activo['Nombre'] = input('Ingrese el nombre del activo: ')
-            activo['Tipo'] = input('Ingrese el tipo de activo (cpu, mouse, teclado, monitor): ')
+            activo['codigo'] = codCampus 
+            activo['nombre'] = input('Ingrese el nombre del activo: ')
+            activo['tipo'] = input('Ingrese el tipo de activo (cpu, mouse, teclado, monitor): ')
             while True: #Verifica que el valor unitario sea un precio real
                 try: 
-                    activo['Valor und'] = float(input('Ingrese el valor unitario del activo: '))
+                    activo['valor und'] = float(input('Ingrese el valor unitario del activo: '))
                     break
                 except: 
                     print('Por favor digite un valor válido')
                     scr.pause_screen()
 
 
-            activo['Nro serial'] = input('Ingrese el número serial del activo: ')
+            activo['nro serial'] = input('Ingrese el número serial del activo: ')
 
             filedata.update({codCampus : activo}) #Actualiza el filedata con el contenido dado
 
@@ -146,18 +148,47 @@ def searchActi():
     search_running = True
     
     while search_running:
+        scr.clean_screen()
         headers_lst = []
         values = []
         
         file.check_file('activos.json')
         filedata = file.read_file('activos.json')
+        while True:
+            scr.clean_screen()
+            code_to_search = input('Ingrese el codigo del activo a buscar: ')
+            
+            #Imprimir toda la información del codigo ingresado
+            if code_to_search in filedata.keys(): #Si el codigo está registrado empieza el proceso
+                for key, value in filedata[code_to_search].items(): 
+                    if key != 'historial':
+                        print(f'{key} : {value}')
+                
+                scr.pause_screen()
+                break
+                        
+            else:
+                scr.clean_screen()
+                print('El codigo ingresado no se encuentra registrado, verifiquelo nuevamente')
+                scr.pause_screen()
+                
         
-        code_to_search = input('Ingrese el codigo del activo a buscar: ')
+        scr.clean_screen()
         
-        if code_to_search in filedata.keys(): #Si el codigo está registrado empieza el proceso
-            for key, value in filedata[code_to_search].items(): 
-                if key != 'historial':
-                    print(f'{key} : {value}')
+        while True:
+            yes_or_not = input('¿Desea buscar otro activo? s(sí) -- n(no): ').upper()
+            if yes_or_not == 'S':
+                break
+            elif yes_or_not == 'N':
+                search_running = False
+                break                
+            
+                
+        
+                
+            
+            
+            
             
        
 
