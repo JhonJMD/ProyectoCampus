@@ -141,8 +141,6 @@ def modifyActi():
 def delActi():
     pass
 
-
-
 #Función para buscar un activo especifico
 def searchActi():
     search_running = True
