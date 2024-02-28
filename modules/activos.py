@@ -136,7 +136,10 @@ def modifyActi():
                 break
 
 def delActi():
-    pass
+    del_acti = True
+    while del_acti
+    
+    
 
 #Función para buscar un activo especifico
 def searchActi():
@@ -192,4 +195,4 @@ def searchActi():
         
         
         
-searchActi()
+
