@@ -1,15 +1,18 @@
 {
   "1": {
+    "codigo": "1",
+    "nombre": "asd",
+    "transaccion": "327",
     "codigo": "1243",
     "nombre": "Jhoan",
     "transaccion": "156",
     "formulario": "966217823",
-    "marca": "Hola",
+    "marca": "Compumax",
     "categoria ": "Equipo de computo",
     "tipo": "asd",
-    "valor und": 1564.0,
+    "valor und": 456.0,
     "proveedor": "Compumax",
-    "nro serial": "1564",
+    "nro serial": "asd",
     "responsable": "CampusLands",
     "estado": "0",
     "historial": {}
