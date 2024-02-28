@@ -126,18 +126,21 @@ def modifyActi():
         scr.clean_screen()
         print('Se ha modificado la información exitosamente')
         question = '¿Desea modificar otro activo? s(sí) -- n(no): '
-        file.quit_loop(question, modify_running)
+        while True:
+            yes_or_not = input(question).upper()
+            if yes_or_not == 'S':
+                break
+            elif yes_or_not == 'N':
+                modify_running = False
+                break
 
               
-
-
-
 
 def delActi():
     pass
 
 def searchActi():
-    pass
+    pa
 
 
 modifyActi()
