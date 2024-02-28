@@ -17,7 +17,6 @@ def addActi():
         filedata = file.read_file('activos.json') #carga el contenido del archivo a filedata
         activo =  {     
                    
-                        'codCampus' : '',
                         'codigo' : '',
                         'nombre' : '',
                         'transaccion' : '327',
@@ -34,7 +33,11 @@ def addActi():
                         
         }
 
-        codCampus = input('Ingrese el codigo del activo a registrar: ')
+        codCampus = input('Ingrese el codigo del activo a registrar (ENTER para salir): ')
+        
+        if codCampus == '':
+            is_add_active = False
+            break
         
        
         if codCampus in filedata.keys(): #Verificar si el codigo ya se encuentra registrado
@@ -86,7 +89,11 @@ def modifyActi():
             break
         while True:
             scr.clean_screen()
-            code_to_modify = input('Ingrese el codigo del activo que desea modificar: ')
+            code_to_modify = input('Ingrese el codigo del activo que desea modificar (ENTER para salir): ')
+            
+            if code_to_modify == '':
+                modify_running = False
+                return
 
             if code_to_modify in filedata.keys(): #Si el codigo está registrado empieza el proceso
                 acti_dict = filedata[code_to_modify] 
@@ -97,7 +104,7 @@ def modifyActi():
                         print(f'{key} : {value}')
                         print('')
                         while True:
-                            modify_or_not = str(input('¿Desea modificar esta información? s(sí) - n(no)')).upper()
+                            modify_or_not = str(input('¿Desea modificar esta información? s(sí) - n(no): ')).upper()
 
                             if modify_or_not == 'S':
                                 if key != 'valor und':
@@ -137,10 +144,60 @@ def modifyActi():
 
 def delActi():
     del_acti = True
-    while del_acti
+    while del_acti:
+        
+        scr.clean_screen()
+        file.check_file('activos.json')
+        filedata = file.read_file('activos.json')
+        
+        
+            
+        if len(filedata) == 0:
+            print('No hay activos registrados')
+            scr.pause_screen()
+            del_acti = False
+            break
+        
+        while True:
+            scr.clean_screen()   
+            code_to_del = input('Ingrese el codigo del activo que desea eliminar (ENTER para salir): ')
+            
+            if code_to_del == '':
+                return
+            
+            if code_to_del in filedata.keys():
+                for key, value in filedata[code_to_del].items():
+                    if key == 'nombre' or key == 'tipo' or key == 'estado':
+                        print(f'{key} : {value}')
+                break
+            
+            else:
+                print('El codigo ingresado no se encuentra registrado')
+                scr.pause_screen()
+                
+        while True:
+            print('')
+            yes_or_not = input('Seguro que desea eliminar este activo? s(sí) - n(no): ').upper()
+        
+            if yes_or_not == 'S':
+                filedata.pop(code_to_del)
+                file.update_file('activos.json', filedata)
+                break
+            elif yes_or_not == 'N':
+                break
+            
+        
+        while True:
+            scr.clean_screen()
+            yes_or_not = input('¿Desea eliminar otro activo? s(sí) - n(no): ').upper()
+            if yes_or_not == 'S':
+                break
+            elif yes_or_not == 'N':
+                del_acti = False
+                break
     
-    
-
+            
+                
 #Función para buscar un activo especifico
 def searchActi():
     search_running = True
@@ -154,14 +211,17 @@ def searchActi():
         filedata = file.read_file('activos.json')
         while True:
             scr.clean_screen()
-            code_to_search = input('Ingrese el codigo del activo a buscar: ')
+            code_to_search = input('Ingrese el codigo del activo a buscar (ENTER para salir): ')
+            
+            if code_to_search == '':
+                search_running = False
+                return
             
             #Imprimir toda la información del codigo ingresado
-            if code_to_search in filedata.keys(): #Si el codigo está registrado empieza el proceso
-                for key, value in filedata[code_to_search].items(): 
-                    if key != 'historial':
-                        print(f'{key} : {value}')
-                
+            if code_to_search in filedata.keys():
+                for key, value in filedata[code_to_search]:
+                    print(f'{key} : {value}')
+                    
                 scr.pause_screen()
                 break
                         
@@ -181,13 +241,9 @@ def searchActi():
                 search_running = False
                 break                
             
-                
+
         
-                
-            
-            
-            
-            
+
        
 
                 
