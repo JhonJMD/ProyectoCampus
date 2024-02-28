@@ -10,25 +10,6 @@ def addActi():
         file.check_file('activos.json') 
         filedata = file.read_file('activos.json') #carga el contenido del archivo a filedata
         activo =  {     
-          'codigo' : '',
-          'nombre' : '',
-          'transaccion' : '327',
-          'formulario' : '966217823',
-          'marca' : 'Compumax',
-          'categoria ' : 'Equipo de computo',
-          'tipo' : '',
-          'valor und' : 0.0,
-          'proveedor' : 'Compumax',
-          'nro serial' : '',
-          'responsable' : 'CampusLands',
-          'estado' : '0',
-          'historial' : {}      
-        }
-        codCampus = input('Ingrese el codigo del activo a registrar (ENTER para salir): ')
-        if codCampus == '':
-            is_add_active = False
-            break
-        activo =  {                
             'codigo' : '',
             'nombre' : '',
             'transaccion' : '327',
@@ -41,8 +22,9 @@ def addActi():
             'nro serial' : '',
             'responsable' : 'CampusLands',
             'estado' : '0',
-            'historial' : {}                
+            'historial' : {}      
         }
+      
         codCampus = input('Ingrese el codigo del activo a registrar: ')
         if codCampus in filedata.keys(): #Verificar si el codigo ya se encuentra registrado
             print('Este codigo ya se encuentra registrado, si desea editarlo vaya a la sección de editar activos')
@@ -88,7 +70,6 @@ def modifyActi():
             if code_to_modify == '':
                 modify_running = False
                 return
-            code_to_modify = input('Ingrese el codigo del activo que desea modificar: ')
             if code_to_modify in filedata.keys(): #Si el codigo está registrado empieza el proceso
                 acti_dict = filedata[code_to_modify] 
                 for key, value in acti_dict.items(): 
@@ -99,7 +80,6 @@ def modifyActi():
                         print('')
                         while True:
                             modify_or_not = str(input('¿Desea modificar esta información? s(sí) - n(no): ')).upper()
-                            modify_or_not = str(input('¿Desea modificar esta información? s(sí) - n(no)')).upper()
                             if modify_or_not == 'S':
                                 if key != 'valor und':
                                     new_value = input(f'Ingrese la nueva información para "{key}": ')
