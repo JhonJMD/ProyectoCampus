@@ -1,0 +1,19 @@
+{
+    "1": {
+        "id": "1",
+        "nombre": "carlos",
+        "email": "JhoanSLC4@gmail.com",
+        "telefonos": ""
+    },
+    "2": {
+        "id": "2",
+        "nombre": "jhoan",
+        "email": "juan123@asda",
+        "telefonos": {
+            "movil": "3052916",
+            "casa": "572556416",
+            "personal": "78461",
+            "oficina": "774631"
+        }
+    }
+}

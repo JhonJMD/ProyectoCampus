@@ -25,7 +25,9 @@ def addActi():
             'historial' : {}      
         }
       
-        codCampus = input('Ingrese el codigo del activo a registrar: ')
+        codCampus = input('Ingrese el codigo del activo a registrar (ENTER para salir): ')
+        if codCampus == '':
+            return
         if codCampus in filedata.keys(): #Verificar si el codigo ya se encuentra registrado
             print('Este codigo ya se encuentra registrado, si desea editarlo vaya a la sección de editar activos')
             scr.pause_screen()
