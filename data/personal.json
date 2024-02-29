@@ -1,10 +1,4 @@
 {
-    "1": {
-        "id": "1",
-        "nombre": "carlos",
-        "email": "JhoanSLC4@gmail.com",
-        "telefonos": ""
-    },
     "2": {
         "id": "2",
         "nombre": "jhoan",
@@ -14,6 +8,17 @@
             "casa": "572556416",
             "personal": "78461",
             "oficina": "774631"
+        }
+    },
+    "1": {
+        "id": "1",
+        "nombre": "hola",
+        "email": "juan123@ajsdas",
+        "telefonos": {
+            "movil": "123",
+            "casa": "789",
+            "personal": "4653",
+            "oficina": ""
         }
     }
 }
