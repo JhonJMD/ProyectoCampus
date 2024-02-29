@@ -13,5 +13,20 @@
     "responsable": "CampusLands",
     "estado": "0",
     "historial": {}
+  },
+  "2": {
+    "codigo": "2",
+    "nombre": "jhoan",
+    "transaccion": "327",
+    "formulario": "966217823",
+    "marca": "Compumax",
+    "categoria ": "Equipo de computo",
+    "tipo": "asd",
+    "valor und": 743.0,
+    "proveedor": "Compumax",
+    "nro serial": "asd",
+    "responsable": "CampusLands",
+    "estado": "0",
+    "historial": {}
   }
 }
