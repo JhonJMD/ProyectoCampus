@@ -31,10 +31,35 @@ def addPer():
             persona['id'] = id 
             persona['nombre'] = input('Ingrese el nombre de la persona: ')
             persona['email'] = input(f"Ingrese el email de {persona['nombre']}: ")
-            persona['telefonos']['movil'] = input('Ingrese el número de telefono movil: ')
-            persona['telefonos']['casa'] = input('Ingrese el número de telefono de la casa (Enter si no ingresa): ')
-            persona['telefonos']['personal'] = input('Ingrese el número de telefono personal (Enter si no ingresa): ')
-            persona['telefonos']['oficina'] = input('Ingrese el número de telefono de oficina (Enter si no ingresa): ')  
+            while True:
+                try:
+                    scr.clean_screen()
+                    persona['telefonos']['movil'] = int(input('Ingrese el número de telefono movil: '))
+                    break
+                except:
+                    print('Ingrese un número de telefono válido')
+                    scr.pause_screen()
+            while True: #Cada while True y su try / Except es para validar que el usuario digite un número de telefono correcto
+                try:
+                    persona['telefonos']['casa'] = int(input('Ingrese el número de telefono de la casa (Enter si no ingresa): '))
+                    break
+                except:
+                    print('Ingrese un número de telefono válido')
+                    scr.pause_screen()
+            while True:
+                try:
+                    persona['telefonos']['personal'] = int(input('Ingrese el número de telefono personal (Enter si no ingresa): '))
+                    break
+                except:
+                    print('Ingrese un número de telefono válido')
+                    scr.pause_screen()
+            while True:
+                try:
+                    persona['telefonos']['oficina'] = input('Ingrese el número de telefono de oficina (Enter si no ingresa): ')  
+                    break
+                except:
+                    print('Ingrese un número de telefono válido')
+                    scr.pause_screen()
             scr.clean_screen()
             filedata.update({id : persona}) #Actualiza el filedata con el contenido dado
             file.update_file('personal.json', filedata) #Actualiza el archivo json con el nuevo activo

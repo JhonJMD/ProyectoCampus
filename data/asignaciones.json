@@ -1,0 +1,15 @@
+{
+    "1": {
+        "nro asignacion": 1,
+        "fecha asignacion": [],
+        "tipo asignacion": "Persona",
+        "asignado a": {
+            "2": "jhoan"
+        },
+        "activo/s asignado": [
+            "CPU-1",
+            "TE-1"
+        ],
+        "fecha asignaci\u00f3n": "24/2/2024"
+    }
+}
