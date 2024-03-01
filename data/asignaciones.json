@@ -1,15 +1,13 @@
 {
     "1": {
-        "nro asignacion": 1,
-        "fecha asignacion": [],
+        "nro asignacion": "1",
+        "fecha asignacion": "11/8/2024",
         "tipo asignacion": "Persona",
         "asignado a": {
             "2": "jhoan"
         },
         "activo/s asignado": [
-            "CPU-1",
-            "TE-1"
-        ],
-        "fecha asignaci\u00f3n": "24/2/2024"
+            "MON-1"
+        ]
     }
 }

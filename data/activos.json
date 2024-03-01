@@ -11,7 +11,7 @@
         "proveedor": "Compumax",
         "nro serial": 465123,
         "responsable": "CampusLands",
-        "estado": "0",
+        "estado": "1",
         "historial": {}
     },
     "CPU-1": {
@@ -86,7 +86,7 @@
         "proveedor": "Compumax",
         "nro serial": 453,
         "responsable": "CampusLands",
-        "estado": "0",
+        "estado": "1",
         "historial": {}
     },
     "MON-4156": {
