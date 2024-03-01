@@ -1,5 +1,162 @@
+import modules.jsonfiles as file
+import modules.screen as scr
+
+
+
+#Función para crear asignaciones
 def createAsig():
-    pass
+    dd = ''
+    mm = ''
+    yy = ''
+    create_asig = True
+    while create_asig:
+        scr.clean_screen()
+        file.check_file('asignaciones.json') #Crear archivo asignaciones
+        asigdata = file.read_file('asignaciones.json') #Cargar archivo asignaciones
+        personadata = file.read_file('personal.json') #Cargar archivo personal
+        activdata = file.read_file('activos.json') #Cargar archivo activos
+        asignacion = {
+            'nro asignacion' : '',
+            'fecha asignacion' : (),
+            'tipo asignacion' : '',
+            'asignado a' : {},
+            'activo/s asignado' : []
+        }
+        while True:
+            scr.clean_screen()
+            nro_asig = int(input('Ingrese el número de asignación (0 para salir): '))
+            asignacion['nro asignacion'] = nro_asig
+            if nro_asig == 0:
+                return
+            if nro_asig in asigdata:
+                print('Este número de asignación ya se encuentra registrado')
+                scr.pause_screen()
+            else: 
+                break
+        print('A continuación va a agregar la fecha de asignacion')
+        scr.pause_screen()
+        while True:
+            #Validación de que el día sea un día válido de un mes
+            try:
+                scr.clean_screen()
+                dd = int(input('Ingrese el día de asignación: '))  
+                if dd in range(31):
+                    break
+                else:
+                    print('Por favor ingrese un día válido')
+                    scr.pause_screen()
+            except:
+                print('Por favor ingrese un día válido')
+                scr.pause_screen()
+        while True:
+            #Validación de que el mes sea un mes valido del año
+            try:
+                scr.clean_screen()
+                mm = int(input('Ingrese el mes de asignación: '))
+                if mm in range(12):
+                    break
+                else:
+                    print('Por favor ingrese un mes válido')
+                    scr.pause_screen()
+            except:
+                print('Por favor ingrese un mes válido')
+                scr.pause_screen()
+        while True:
+            #Validación de que el año sea menor o igual a el año en el que estamos
+            try:
+                scr.clean_screen()
+                yy = int(input('Ingrese el año de asignación: '))
+                if yy <= 2024:
+                    break
+                else:
+                    print('Por favor ingrese un año válido')
+                    scr.pause_screen()
+            except:
+                print('Por favor ingrese un año válido')
+                scr.pause_screen()
+        asignacion['fecha asignación'] = f'{dd}/{mm}/{yy}' #Toma las variables anteriores para validar que el usuario ingrese una fecha correcta
+        while True:
+            scr.clean_screen()
+            tipo = input('Ingrese "P" si el tipo de asignación es a persona o "Z" si es a una zona: ').upper()
+            if tipo == 'P': #Valida que ingrese el dato correcto y le asigna el tipo de asig
+                asignacion['tipo asignacion'] = 'Persona'
+                break
+            elif tipo == 'Z':
+                asignacion['tipo asignacion'] = 'Zona'
+                break
+            else:
+                print('Por favor ingrese un dato válido ("P" o "Z")')
+        if tipo == 'P': #Empieza un bucle para ingresar la persona a la que se le asigna activos
+            add_person = True
+            while add_person:
+                scr.clean_screen()
+                id = input('Ingres el ID de la persona a la que se asigna el activo: ')
+                if id in personadata.keys():
+                    name = personadata[id].get('nombre')
+                    yesornot = input(f'El ID ingresado corresponde a {name}... ¿Está seguro que desea asignarlo? s(sí) - n(no): ').upper()
+                    if yesornot == 'S':
+                        asignacion['asignado a'].update({id : name})
+                        scr.clean_screen()
+                        print('Asignado exitosamente!')
+                        break
+                    if yesornot == 'N':
+                        pass
+                else:
+                    print('El ID no se encuentra registrado, vuelva a intentarlo')
+                    scr.pause_screen()
+        if tipo == 'Z': #Empieza el bucle para ingresar la zona a la que se le asigna activos
+            pass
+        if tipo == 'P': #Empieza el bucle necesario para ingresar activos a una persona
+            add_acti = True
+            tipos = []
+            while add_acti:
+                scr.clean_screen()
+                activo = input('Ingrese el codigo del activo a asignar: ')    
+                if (activo in activdata.keys()) and (activdata[activo]['estado'] == '0'): #Valida que el activo se encuentre registrado y no asignado
+                    if activdata[activo]['tipo'] not in tipos: #Valida que el tipo de activo que se desea asignar no se encuentre ya asignado a esta persona
+                        tipos.append(activdata[activo]['tipo']) #Si no se encuentra registrado, lo registra a la lista para luego volver a validar
+                        name = activdata[activo].get('nombre')
+                        tipo = activdata[activo].get('tipo')
+                        scr.clean_screen
+                        print(f'nombre : {name}')
+                        print(f'tipo : {tipo}')
+                        areyousure = input('¿Seguro que desea asignar este activo? s(sí) - n(no): ').upper()
+                        if areyousure == 'S':
+                            scr.clean_screen()
+                            asignacion['activo/s asignado'].append(activo)
+                            activdata[activo]['estado'] = '1'
+                        if areyousure == 'N':
+                            scr.pause_screen()
+                    else: #Si la persona ya tiene un activo de este tipo asignado
+                        scr.clean_screen()
+                        print('Esta persona ya tiene un activo de este tipo asignado, asigne otro tipo de activo o regrese al menu')
+                        scr.pause_screen()
+                else: #Si el activo tuvo algún error
+                    scr.clean_screen()
+                    print('El activo ingresado posee alguno de estos problemas:\n*No se encuentra registrado\n*Ya se encuentra asignado\n*Se encuentra en reparacion y/o garantía\n*No se encuentra disponible debido a alguna falla ')
+                    print('Verifique el estado del activo en la sección buscar activo')
+                    scr.pause_screen()                        
+                while True:
+                    scr.clean_screen()
+                    yes_or_not = input('¿Desea registrar otro activo? s(sí) -- n(no): ').upper()
+                    if yes_or_not == 'S':
+                        break
+                    elif yes_or_not == 'N':
+                        add_acti = False
+                        break
+        file.update_file('activos.json', activdata)              
+        asigdata.update({nro_asig: asignacion})
+        file.update_file('asignaciones.json', asigdata)
+        while True:
+            scr.clean_screen()
+            yes_or_not = input('¿Desea registrar otra asignación? s(sí) -- n(no): ').upper()
+            if yes_or_not == 'S':
+                break
+            elif yes_or_not == 'N':
+                create_asig = False
+                break
+        
+                        
 
 def searchAsig():
     pass

@@ -24,25 +24,85 @@ def addActi():
             'estado' : '0',
             'historial' : {}      
         }
-      
-        codCampus = input('Ingrese el codigo del activo a registrar: ')
-        if codCampus in filedata.keys(): #Verificar si el codigo ya se encuentra registrado
-            print('Este codigo ya se encuentra registrado, si desea editarlo vaya a la sección de editar activos')
-            scr.pause_screen()
-        else:      
-            activo['codigo'] = codCampus 
-            activo['nombre'] = input('Ingrese el nombre del activo: ')
-            activo['tipo'] = input('Ingrese el tipo de activo (cpu, mouse, teclado, monitor): ')
-            while True: #Verifica que el valor unitario sea un precio real
-                try: 
-                    activo['valor und'] = float(input('Ingrese el valor unitario del activo: '))
+        while True:
+            scr.clean_screen()
+            while True:
+                scr.clean_screen()
+                tipo = input('Ingrese el tipo de activo (1.cpu, 2.mouse, 3.teclado, 4.monitor, 5.Salir: ')
+                if tipo == '1' or tipo == '2' or tipo == '3' or tipo == '4' or tipo == '5':
                     break
-                except: 
-                    print('Por favor digite un valor válido')
-                    scr.pause_screen()
-            activo['nro serial'] = input('Ingrese el número serial del activo: ')
-            filedata.update({codCampus : activo}) #Actualiza el filedata con el contenido dado
-            file.update_file('activos.json', filedata) #Actualiza el archivo json con el nuevo activo
+            if tipo == '5':
+                return
+            if tipo == '1':
+                activo['tipo'] = 'CPU'
+                while True:
+                    try:
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
+                        activo['codigo'] = f'CPU-{codCampus}'
+                        codCampus = f'CPU-{codCampus}'
+                        break
+                    except:
+                        print('Codigo invalido, vuelva a intentarlo')
+                        scr.pause_screen()   
+            if tipo == '2':
+                activo['tipo'] = 'Mouse'
+                while True:
+                    try:
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
+                        activo['codigo'] = f'MO-{codCampus}'
+                        codCampus = f'MO-{codCampus}'
+                        break
+                    except:
+                        print('Codigo invalido, vuelva a intentarlo')
+                        scr.pause_screen()   
+            if tipo == '3':
+                activo['tipo'] = 'Teclado'
+                while True:
+                    try:
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
+                        activo['codigo'] = f'TE-{codCampus}'
+                        codCampus = f'TE-{codCampus}'
+                        break
+                    except:
+                        print('Codigo invalido, vuelva a intentarlo')
+                        scr.pause_screen()   
+            if tipo == '4':
+                activo['tipo'] = 'Monitor'
+                while True:
+                    try:
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
+                        activo['codigo'] = f'MON-{codCampus}'
+                        codCampus = f'MON-{codCampus}'
+                        break
+                    except:
+                        print('Codigo invalido, vuelva a intentarlo')
+                        scr.pause_screen()
+            
+            if codCampus in filedata.keys(): #Verificar si el codigo ya se encuentra registrado
+                print('Este codigo ya se encuentra registrado, si desea editarlo vaya a la sección de editar activos')
+                scr.pause_screen()
+            else:
+                break
+        
+        activo['nombre'] = input('Ingrese el nombre del activo: ')
+        while True: #Verifica que el valor unitario sea un precio real
+            try: 
+                activo['valor und'] = float(input('Ingrese el valor unitario del activo: '))
+                break
+            except: 
+                print('Por favor digite un valor válido')
+                scr.pause_screen()
+        while True:
+            try:
+                scr.clean_screen()
+                activo['nro serial'] = int(input('Ingrese el número serial del activo: '))
+                break
+            except: 
+                print('Número invalido, vuelva a intentarlo')
+                scr.pause_screen()
+        new_code = activo['codigo']
+        filedata.update({new_code : activo}) #Actualiza el filedata con el contenido dado
+        file.update_file('activos.json', filedata) #Actualiza el archivo json con el nuevo activo
         #Bucle para decidir si se agrega otro activo o no 
         while True:
             scr.clean_screen()
@@ -75,7 +135,7 @@ def modifyActi():
                 for key, value in acti_dict.items(): 
                     scr.clean_screen()
                     #Imprime los valores que se pueden modificar y quita algunos que no.
-                    if (key != 'historial') and (key != 'codigo') and (key != 'estado') and (key != 'codCampus'):
+                    if (key != 'historial') and (key != 'codigo') and (key != 'estado') and (key != 'codCampus') and (key != 'tipo'):
                         print(f'{key} : {value}')
                         print('')
                         while True:
@@ -114,13 +174,14 @@ def modifyActi():
                 modify_running = False
                 break
 
+#Función para borrar un activo
 def delActi():
     del_acti = True
     while del_acti:
         scr.clean_screen()
         file.check_file('activos.json')
         filedata = file.read_file('activos.json')  
-        if len(filedata) == 0:
+        if len(filedata) == 0: #Si no hay activos registrados no entra al proceso de eliminación
             print('No hay activos registrados')
             scr.pause_screen()
             del_acti = False

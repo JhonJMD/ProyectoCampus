@@ -1,0 +1,24 @@
+{
+    "2": {
+        "id": "2",
+        "nombre": "jhoan",
+        "email": "juan123@asda",
+        "telefonos": {
+            "movil": "3052916",
+            "casa": "572556416",
+            "personal": "78461",
+            "oficina": "774631"
+        }
+    },
+    "3": {
+        "id": "3",
+        "nombre": "caro",
+        "email": "caro1234@jasdsa.com",
+        "telefonos": {
+            "movil": "5415",
+            "casa": "84312",
+            "personal": "156489",
+            "oficina": "74895"
+        }
+    }
+}
