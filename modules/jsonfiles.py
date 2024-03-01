@@ -9,12 +9,9 @@ BASE = 'data/'
 #Recibe: el nombre del archivo
 
 def check_file(file : str): 
-
     if not os.path.isfile(BASE+file):
-
         with open(BASE+file, 'w') as create_file:
-            json.dump({}, create_file, indent = 4)
-    
+            json.dump({}, create_file, indent = 4)  
     else: 
         pass
 

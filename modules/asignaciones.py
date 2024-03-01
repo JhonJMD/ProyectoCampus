@@ -1,5 +1,6 @@
 import modules.jsonfiles as file
 import modules.screen as scr
+from tabulate import tabulate
 
 
 
@@ -23,16 +24,21 @@ def createAsig():
             'activo/s asignado' : []
         }
         while True:
-            scr.clean_screen()
-            nro_asig = int(input('Ingrese el número de asignación (0 para salir): '))
-            asignacion['nro asignacion'] = nro_asig
-            if nro_asig == 0:
-                return
-            if nro_asig in asigdata:
-                print('Este número de asignación ya se encuentra registrado')
+            try:
+                scr.clean_screen()
+                nro_asig = int(input('Ingrese el número de asignación (0 para salir): '))
+                nro_asig = str(nro_asig)
+                asignacion['nro asignacion'] = nro_asig
+                if nro_asig == 0:
+                    return
+                if nro_asig in asigdata.keys():
+                    print('Este número de asignación ya se encuentra registrado')
+                    scr.pause_screen()
+                else: 
+                    break
+            except:
+                print('Por favor digite un valor válido para el número de asignación')
                 scr.pause_screen()
-            else: 
-                break
         print('A continuación va a agregar la fecha de asignacion')
         scr.pause_screen()
         while True:
@@ -40,7 +46,7 @@ def createAsig():
             try:
                 scr.clean_screen()
                 dd = int(input('Ingrese el día de asignación: '))  
-                if dd in range(31):
+                if dd in range(32):
                     break
                 else:
                     print('Por favor ingrese un día válido')
@@ -53,7 +59,7 @@ def createAsig():
             try:
                 scr.clean_screen()
                 mm = int(input('Ingrese el mes de asignación: '))
-                if mm in range(12):
+                if mm in range(13):
                     break
                 else:
                     print('Por favor ingrese un mes válido')
@@ -74,7 +80,7 @@ def createAsig():
             except:
                 print('Por favor ingrese un año válido')
                 scr.pause_screen()
-        asignacion['fecha asignación'] = f'{dd}/{mm}/{yy}' #Toma las variables anteriores para validar que el usuario ingrese una fecha correcta
+        asignacion['fecha asignacion'] = f'{dd}/{mm}/{yy}' #Toma las variables anteriores para validar que el usuario ingrese una fecha correcta
         while True:
             scr.clean_screen()
             tipo = input('Ingrese "P" si el tipo de asignación es a persona o "Z" si es a una zona: ').upper()
@@ -90,7 +96,17 @@ def createAsig():
             add_person = True
             while add_person:
                 scr.clean_screen()
-                id = input('Ingres el ID de la persona a la que se asigna el activo: ')
+                isidcorrect = True
+                while isidcorrect:
+                    scr.clean_screen()
+                    id = input('Ingres el ID de la persona a la que se asigna el activo: ')
+                    if len(asigdata) != 0:
+                        for item in asigdata:
+                            if id in item['asignado a']:
+                                print('Esta persona ya cuenta con un activo asignado\nSi desea reasignarle otro primero retorne el activo que ya está asignado y pase a asignarle el nuevo')
+                                scr.pause_screen()
+                    else:
+                        break
                 if id in personadata.keys():
                     name = personadata[id].get('nombre')
                     yesornot = input(f'El ID ingresado corresponde a {name}... ¿Está seguro que desea asignarlo? s(sí) - n(no): ').upper()
@@ -159,4 +175,37 @@ def createAsig():
                         
 
 def searchAsig():
-    pass
+    search_running = True
+    while search_running:
+        scr.clean_screen()
+        info = []
+        kys = ['Nro asignación','Fecha','Tipo','Asignado a','Activo/s asignado/s']
+        file.check_file('asignaciones.json')
+        filedata = file.read_file('asignaciones.json')
+        while True:
+            scr.clean_screen()
+            code_to_search = input('Ingrese el número de asignación a buscar (ENTER para salir): ')
+            if code_to_search == '':
+                search_running = False
+                return
+            #Imprimir toda la información del codigo ingresado
+            if code_to_search in filedata.keys(): #Si el codigo está registrado empieza el proceso
+                for key, value in filedata[code_to_search].items(): 
+                    value = str(value)
+                    info.append(value)
+                print(tabulate([info], headers=kys, tablefmt='grid'))
+                scr.pause_screen()
+                break       
+            else:
+                scr.clean_screen()
+                print('El codigo ingresado no se encuentra registrado, verifiquelo nuevamente')
+                scr.pause_screen()
+        scr.clean_screen()
+        while True:
+            yes_or_not = input('¿Desea buscar otra asignación? s(sí) -- n(no): ').upper()
+            if yes_or_not == 'S':
+                break
+            elif yes_or_not == 'N':
+                search_running = False
+                break
+
