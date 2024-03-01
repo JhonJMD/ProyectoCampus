@@ -54,3 +54,11 @@ def headerMovActi():
     ----------------------------------
     """
     print(header)
+
+def headerMenuNameZonas():
+    header = """
+    ---------------------------------
+    |             ZONAS             |
+    ---------------------------------
+    """
+    print(header)
