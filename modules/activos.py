@@ -237,7 +237,7 @@ def searchActi():
                 for key, value in filedata[code_to_search].items(): 
                     if key != 'historial':
                         value = str(value)
-                        info.append(value)
+                        info.append([value])
                 print(tabulate([info], headers=kys, tablefmt='grid'))
                 scr.pause_screen()
                 break       

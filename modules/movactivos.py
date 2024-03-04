@@ -20,12 +20,12 @@ def returnActi():
                 scr.pause_screen()           
             else:
                 state = acti_data[code_to_return]['estado'] 
-                if state == '1':
+                if state == '0':
                     print('El activo ya ha sido retornado.')
                     scr.pause_screen()
                 else:
                     nroId+=1
-                    acti_data[code_to_return]['estado'] = '1'
+                    acti_data[code_to_return]['estado'] = '0'
                     movement = {
                         'nroId': str(nroId).zfill(3),
                         'fecha': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),

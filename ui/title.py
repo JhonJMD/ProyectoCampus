@@ -62,3 +62,19 @@ def headerMenuNameZonas():
     ---------------------------------
     """
     print(header)
+
+def headerMenuCat():
+    header = """
+    ---------------------------------
+    |           CATEGORIAS          |
+    ---------------------------------
+    """
+    print(header)
+
+def headerMenuTypeList():
+    header = """
+    ---------------------------------
+    |        TIPO DE LISTADO        |
+    ---------------------------------
+    """
+    print(header)

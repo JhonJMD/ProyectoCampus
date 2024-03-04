@@ -3,6 +3,7 @@ import modules.jsonfiles as file
 from tabulate import tabulate
 
 
+
 #Función par añadir persona al archivo json
 def addPer():
     is_add_per = True

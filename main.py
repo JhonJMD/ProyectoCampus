@@ -4,4 +4,12 @@ def main():
     m.menuMain()
 
 if __name__ == '__main__':
-    main()
+    while True:
+        try:
+            main()
+        except KeyboardInterrupt:
+            print('No rompa el codigo')
+            m.sc.pause_screen()
+        else:
+            main()
+            break
