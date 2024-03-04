@@ -252,3 +252,4 @@ def searchActi():
                 break
             elif yes_or_not == 'N':
                 search_running = False
+                break

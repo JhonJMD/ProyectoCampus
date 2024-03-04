@@ -16,6 +16,7 @@ def createAsig():
         asigdata = file.read_file('asignaciones.json') #Cargar archivo asignaciones
         personadata = file.read_file('personal.json') #Cargar archivo personal
         activdata = file.read_file('activos.json') #Cargar archivo activos
+        zonedata = file.read_file('zonas.json')
         asignacion = {
             'nro asignacion' : '',
             'fecha asignacion' : (),

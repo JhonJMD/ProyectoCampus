@@ -1,4 +1,14 @@
 {
+    "002": {
+        "nrozona": "002",
+        "nombrezona": "Artemis",
+        "totalcapacidad": 33
+    },
+    "003": {
+        "nrozona": "003",
+        "nombrezona": "Sputnik",
+        "totalcapacidad": 33
+    },
     "001": {
         "nrozona": "001",
         "nombrezona": "Apolo",
