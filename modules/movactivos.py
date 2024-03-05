@@ -4,11 +4,7 @@ import datetime
 
 nroId = 0
 
-<<<<<<< HEAD
-#Función para retornar activos
-=======
 #Funcion para retornar activos
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
 def returnActi():
     global nroId
     return_acti = True
@@ -55,11 +51,7 @@ def returnActi():
                     return_acti = False
                     break 
 
-<<<<<<< HEAD
-#Función para dar de baja un activo
-=======
 #Funcion para dar debaja activos
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
 def cancelActi():
     global nroId
     cancel_acti = True
@@ -84,27 +76,6 @@ def cancelActi():
                     scr.pause_screen()
                     break
                 else:
-<<<<<<< HEAD
-                    state = acti_data[code_to_cancel]['estado'] 
-                    if state == '2':
-                        print('El activo ya ha sido dado de baja')
-                        scr.pause_screen()
-                        break
-                    #Da de baja el activo y agrega el historial a dicho activo
-                    else:
-                        nroId+=1
-                        acti_data[code_to_cancel]['estado'] = '2'
-                        movement = {
-                            'nroId': str(nroId).zfill(3),
-                            'fecha': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                            'tipoMov': '2', 
-                            'idRespMov': '123'  
-                        }
-                        acti_data[code_to_cancel]['historial'].update(movement)
-                        file.update_file('activos.json', acti_data)
-                        print(f'Activo {code_to_cancel} dado de baja exitosamente.')
-                        scr.pause_screen()
-=======
                     nroId+=1
                     acti_data[code_to_cancel]['estado'] = '2'
                     movement = {
@@ -117,7 +88,6 @@ def cancelActi():
                     file.update_file('activos.json', acti_data)
                     print(f'Activo {code_to_cancel} dado de baja exitosamente.')
                     scr.pause_screen()
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
         while True:
             scr.clean_screen()
             yes_or_not = input('¿Desea dar de baja otro activo? s(sí) -- ENTER(no): ')
@@ -126,12 +96,8 @@ def cancelActi():
             elif yes_or_not == '':
                 cancel_acti = False
                 break 
-<<<<<<< HEAD
-#Función para reasignar activos
-=======
 
 #Funcion para cambiar asignacion de activos
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
 def changeAsig():
     global nroId
     change_acti = True
@@ -185,11 +151,7 @@ def changeAsig():
                         change_acti = False
                         break 
 
-<<<<<<< HEAD
-#Función para mandar a garantía
-=======
 #Funcion para regresar a activo a garantia
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
 def sendWarran():
     global nroId
     send_warran = True

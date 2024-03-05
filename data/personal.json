@@ -9,5 +9,16 @@
             "personal": "78461",
             "oficina": "774631"
         }
+    },
+    "007": {
+        "id": "007",
+        "nombre": "JAMES BOOM",
+        "email": "ADFASDGSFDG",
+        "telefonos": {
+            "movil": "1651651",
+            "casa": "153",
+            "personal": "451",
+            "oficina": "0"
+        }
     }
 }

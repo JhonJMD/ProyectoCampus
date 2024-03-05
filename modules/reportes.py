@@ -113,4 +113,19 @@ def listActiAsig():
 
 #Funcion para listar historial de movimientos de un activo
 def listHistoMov():
-    pass
+    scr.clean_screen()
+    activo_id = input("Ingrese el código del activo del cual desea ver el historial de movimientos: ").upper()
+    if activo_id in activos_data:
+        historial = activos_data[activo_id].get("historial", {})
+        if historial:
+            headers = ["NroId", "Fecha", "Tipo de Movimiento", "ID Responsable"]
+            rows = []
+            for key, movimiento in historial:
+                row = [movimiento.get("nroId", ""), movimiento.get("fecha", ""), movimiento.get("tipoMov", ""), movimiento.get("idRespMov", "")]
+                rows.append(row)
+            print(tabulate(rows, headers=headers, tablefmt="fancy_grid"))
+        else:
+            print("No hay movimientos registrados para este activo.")
+    else:
+        print("El activo no se encuentra registrado.")
+    scr.pause_screen()

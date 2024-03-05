@@ -41,5 +41,39 @@
         "activo/s asignado": [
             "MON-4156"
         ]
+    },
+    "2": {
+        "nro asignacion": "2",
+        "fecha asignacion": "30/1/2020",
+        "tipo asignacion": "Zona",
+        "asignado a": "Apolo",
+        "activo/s asignado": [
+            "CP002",
+            "CP003",
+            "TE001",
+            "MON001"
+        ]
+    },
+    "1502": {
+        "nro asignacion": "1502",
+        "fecha asignacion": "11/8/2024",
+        "tipo asignacion": "Persona",
+        "asignado a": {
+            "007": "JAMES BOOM"
+        },
+        "activo/s asignado": [
+            "MON025"
+        ]
+    },
+    "1423": {
+        "nro asignacion": "1423",
+        "fecha asignacion": "11/8/2024",
+        "tipo asignacion": "Persona",
+        "asignado a": {
+            "007": "JAMES BOOM"
+        },
+        "activo/s asignado": [
+            "MON023"
+        ]
     }
 }

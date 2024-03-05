@@ -26,8 +26,13 @@
         "proveedor": "Compumax",
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
-        "estado": "0",
-        "historial": {}
+        "estado": "1",
+        "historial": {
+            "nroId": "001",
+            "fecha": "2024-03-05 12:04:12",
+            "tipoMov": "1",
+            "idRespMov": "123"
+        }
     },
     "CP003": {
         "codigo": "CP003",
@@ -2201,7 +2206,7 @@
         "proveedor": "Compumax",
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
-        "estado": "0",
+        "estado": "1",
         "historial": {}
     },
     "MON024": {
@@ -2231,7 +2236,7 @@
         "proveedor": "Compumax",
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
-        "estado": "0",
+        "estado": "1",
         "historial": {}
     },
     "MON026": {
@@ -5591,18 +5596,8 @@
         "proveedor": "Compumax",
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
-<<<<<<< HEAD
-        "estado": "1",
-        "historial": {
-            "nroId": "001",
-            "fecha": "2024-03-04 17:39:48",
-            "tipoMov": "2",
-            "idRespMov": "123"
-        }
-=======
         "estado": "0",
         "historial": {}
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
     },
     "MO002": {
         "codigo": "MO002",
@@ -5617,8 +5612,6 @@
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
         "estado": "0",
-<<<<<<< HEAD
-=======
         "historial": {}
     },
     "MO003": {
@@ -7449,7 +7442,21 @@
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
         "estado": "0",
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
+        "historial": {}
+    },
+    "MON125": {
+        "codigo": "MON125",
+        "nombre": "sjkashf",
+        "transaccion": "327",
+        "formulario": "966217823",
+        "marca": "Compumax",
+        "categoria ": "Equipo de computo",
+        "tipo": "Monitor",
+        "valor und": 3242534.0,
+        "proveedor": "Compumax",
+        "nro serial": 5454,
+        "responsable": "CampusLands",
+        "estado": "0",
         "historial": {}
     }
 }

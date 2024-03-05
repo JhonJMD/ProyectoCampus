@@ -7,7 +7,7 @@ if __name__ == '__main__':
     while True:
         try:
             main()
-        except:
+        except KeyboardInterrupt:
             print('No rompa el codigo')
             m.sc.pause_screen()
         else:

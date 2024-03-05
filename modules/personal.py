@@ -35,28 +35,28 @@ def addPer():
             while True:
                 try:
                     scr.clean_screen()
-                    persona['telefonos']['movil'] = int(input('Ingrese el número de telefono movil: '))
+                    persona['telefonos']['movil'] = input('Ingrese el número de telefono movil: ')
                     break
                 except:
                     print('Ingrese un número de telefono válido')
                     scr.pause_screen()
             while True: #Cada while True y su try / Except es para validar que el usuario digite un número de telefono correcto
                 try:
-                    persona['telefonos']['casa'] = int(input('Ingrese el número de telefono de la casa (Enter si no ingresa): '))
+                    persona['telefonos']['casa'] = input('Ingrese el número de telefono de la casa (Enter si no ingresa): ')
                     break
                 except:
                     print('Ingrese un número de telefono válido')
                     scr.pause_screen()
             while True:
                 try:
-                    persona['telefonos']['personal'] = int(input('Ingrese el número de telefono personal (Enter si no ingresa): '))
+                    persona['telefonos']['personal'] = input('Ingrese el número de telefono personal (Enter si no ingresa): ')
                     break
                 except:
                     print('Ingrese un número de telefono válido')
                     scr.pause_screen()
             while True:
                 try:
-                    persona['telefonos']['oficina'] = input('Ingrese el número de telefono de oficina (Enter si no ingresa): ')  
+                    persona['telefonos']['oficina'] = input('Ingrese el número de telefono de oficina (Enter si no ingresa): ')
                     break
                 except:
                     print('Ingrese un número de telefono válido')

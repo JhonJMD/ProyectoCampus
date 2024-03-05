@@ -3,6 +3,8 @@ import modules.screen as scr
 from tabulate import tabulate
 import datetime
 
+nroId = 0
+nroId_2 = 0
 
 
 #Función para crear asignaciones
@@ -103,11 +105,14 @@ def createAsig():
                     scr.clean_screen()
                     id = input('Ingres el ID de la persona a la que se asigna el activo: ')
                     if len(asigdata) != 0:
-                        for item in asigdata:
+                        for item in asigdata.values():
                             #Verifica que la persona no tenga activos asignados
                             if id in item['asignado a']:
                                 print('Esta persona ya cuenta con un activo asignado\nSi desea reasignarle otro primero retorne el activo que ya está asignado y pase a asignarle el nuevo')
                                 scr.pause_screen()
+                            else:
+                                isidcorrect = False
+                                break
                     else:
                         break
                 #Se asegura de que el id ingresado sea el que la persona desea realmente asignar
@@ -143,7 +148,7 @@ def createAsig():
                         print('La zona no se encuentra registrada')
                         scr.pause_screen()
         if tipo == 'Z': #Empieza el bucle necesario para ingresar activos a una zona 
-            nroId = 0
+            global nroId 
             add_acti_zone = True
             while add_acti_zone:
                 scr.clean_screen()
@@ -187,7 +192,7 @@ def createAsig():
                         add_acti_zone = False
                         break              
         if tipo == 'P': #Empieza el bucle necesario para ingresar activos a una persona
-            nroId_2 = 0
+            global nroId_2 
             add_acti = True
             tipos = []
             while add_acti:

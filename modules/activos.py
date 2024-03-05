@@ -9,20 +9,20 @@ def addActi():
         scr.clean_screen()
         file.check_file('activos.json') 
         filedata = file.read_file('activos.json') #carga el contenido del archivo a filedata
-        activo =  {     
+        activo = {
+            'codigo' : '',
+            'nombre' : '',
             'transaccion' : '327',
-            'nro serial' : '',
-            'codigo' : '327',
-            'formulario' : '966217823',
-            'nombre' : 'Compumax',
-            'categoria ' : 'Equipo de computo',
-            'tipo' : '',
-            'valor und' : 0.0,
-            'proveedor' : 'Compumax',
-            'nro serial' : '',
-            'responsable' : 'CampusLands',
-            'estado' : '0',
-            'historial' : {}      
+            'formulario': '966217823',
+            'marca': 'Compumax',
+            'categoria ': 'Equipo de computo',
+            'tipo': '',
+            'valor und': 0.0,
+            'proveedor': 'Compumax',
+            'nro serial': '35465454554156454',
+            'responsable': 'CampusLands',
+            'estado': '0',
+            'historial': {}
         }
         while True:
             scr.clean_screen()
@@ -189,13 +189,8 @@ def delActi():
             break
         while True:
             scr.clean_screen()   
-<<<<<<< HEAD
-            code_to_del = input('Ingrese el codigo del activo que desea eliminar (ENTER para salir): ')
-            if code_to_del == '': #Si el valor ingresado es un espacio vacío se sale de esta sección
-=======
             code_to_del = input('Ingrese el codigo del activo que desea eliminar (ENTER para salir): ').upper()
             if code_to_del == '':
->>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
                 return  
             if code_to_del in filedata.keys():
                 for key, value in filedata[code_to_del].items():
