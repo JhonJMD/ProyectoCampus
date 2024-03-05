@@ -16,5 +16,30 @@
         "tipo asignacion": "Zona",
         "asignado a": {},
         "activo/s asignado": []
+    },
+    "84156": {
+        "nro asignacion": "84156",
+        "fecha asignacion": "11/8/2024",
+        "tipo asignacion": "Zona",
+        "asignado a": "Artemis",
+        "activo/s asignado": []
+    },
+    "489156": {
+        "nro asignacion": "489156",
+        "fecha asignacion": "2/1/2024",
+        "tipo asignacion": "Zona",
+        "asignado a": "Sputnik",
+        "activo/s asignado": [
+            "MON-1"
+        ]
+    },
+    "5123": {
+        "nro asignacion": "5123",
+        "fecha asignacion": "11/11/2023",
+        "tipo asignacion": "Zona",
+        "asignado a": "Artemis",
+        "activo/s asignado": [
+            "MON-4156"
+        ]
     }
 }

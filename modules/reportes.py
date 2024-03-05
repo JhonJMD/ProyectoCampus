@@ -92,7 +92,18 @@ def listActiDama():
     scr.pause_screen()
 
 def listActiAsig():
-    pass
+    kys = ['nro asignación', 'fecha asignación', 'tipo asignación', 'asignado a', 'activos asignados']
+    rows = []  
+    for key, value in asig_data.items(): 
+            row = [] 
+            for v in value.values():
+                if isinstance(v, dict):
+                    pass
+                else:
+                    row.append(v)
+            rows.append(row) 
+    print(tabulate(rows, headers=kys, tablefmt='fancy_grid'))
+    scr.pause_screen()
 
 def listHistoMov():
     pass

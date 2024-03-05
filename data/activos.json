@@ -91,7 +91,7 @@
         "proveedor": "Compumax",
         "nro serial": 453,
         "responsable": "CampusLands",
-        "estado": "0",
+        "estado": "1",
         "historial": {
             "nroId": "001",
             "fecha": "2024-03-04 17:39:48",
@@ -111,7 +111,7 @@
         "proveedor": "Compumax",
         "nro serial": 465123,
         "responsable": "CampusLands",
-        "estado": "1",
+        "estado": "0",
         "historial": {}
     }
 }

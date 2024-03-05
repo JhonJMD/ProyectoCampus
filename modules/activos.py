@@ -10,11 +10,11 @@ def addActi():
         file.check_file('activos.json') 
         filedata = file.read_file('activos.json') #carga el contenido del archivo a filedata
         activo =  {     
-            'codigo' : '',
-            'nombre' : '',
             'transaccion' : '327',
+            'nro serial' : '',
+            'codigo' : '327',
             'formulario' : '966217823',
-            'marca' : 'Compumax',
+            'nombre' : 'Compumax',
             'categoria ' : 'Equipo de computo',
             'tipo' : '',
             'valor und' : 0.0,
@@ -29,7 +29,7 @@ def addActi():
             while True:
                 scr.clean_screen()
                 tipo = input('Ingrese el tipo de activo (1.cpu, 2.mouse, 3.teclado, 4.monitor, 5.Salir: ')
-                if tipo == '1' or tipo == '2' or tipo == '3' or tipo == '4' or tipo == '5':
+                if tipo == '1' or tipo == '2' or tipo == '3' or tipo == '4' or tipo == '5': #Verifica los tipos de maquina de computo que hay
                     break
             if tipo == '5':
                 return
@@ -37,9 +37,9 @@ def addActi():
                 activo['tipo'] = 'CPU'
                 while True:
                     try:
-                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
-                        activo['codigo'] = f'CPU-{codCampus}'
-                        codCampus = f'CPU-{codCampus}'
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: ')) #Se recibe la parte númerica del codigo a registrar
+                        activo['codigo'] = f'CPU{codCampus}' #Agrega automaticamente el codigo "CPU" y se le suma el codigo agregado
+                        codCampus = f'CPU{codCampus}'
                         break
                     except:
                         print('Codigo invalido, vuelva a intentarlo')
@@ -48,9 +48,9 @@ def addActi():
                 activo['tipo'] = 'Mouse'
                 while True:
                     try:
-                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
-                        activo['codigo'] = f'MO-{codCampus}'
-                        codCampus = f'MO-{codCampus}'
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: ')) #Se recibe la parte númerica del codigo
+                        activo['codigo'] = f'MO{codCampus}' #Agrega automaticamente el codigo "MO" y se le suma el codigo agregado
+                        codCampus = f'MO{codCampus}' #Guarda el codigo en una variable
                         break
                     except:
                         print('Codigo invalido, vuelva a intentarlo')
@@ -59,9 +59,9 @@ def addActi():
                 activo['tipo'] = 'Teclado'
                 while True:
                     try:
-                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
-                        activo['codigo'] = f'TE-{codCampus}'
-                        codCampus = f'TE-{codCampus}'
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: ')) #Se recibe la parte númerica del codigo
+                        activo['codigo'] = f'TE{codCampus}' #Agrega automaticamente el codigo "TE" y se le suma el codigo ingresado
+                        codCampus = f'TE{codCampus}' #Guarda el codigo en una variable 
                         break
                     except:
                         print('Codigo invalido, vuelva a intentarlo')
@@ -70,9 +70,9 @@ def addActi():
                 activo['tipo'] = 'Monitor'
                 while True:
                     try:
-                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: '))
-                        activo['codigo'] = f'MON-{codCampus}'
-                        codCampus = f'MON-{codCampus}'
+                        codCampus = int(input('Ingrese el codigo (solo parte númerica) del activo a registrar: ')) #Se recibe la parte númerica del codigo 
+                        activo['codigo'] = f'MON{codCampus}' #Agrega automaticamente el codigo "MON" y se le suma el código ingresado
+                        codCampus = f'MON{codCampus}' #Guarda el codigo en una variable 
                         break
                     except:
                         print('Codigo invalido, vuelva a intentarlo')
@@ -83,7 +83,7 @@ def addActi():
                 scr.pause_screen()
             else:
                 break
-        
+        #Se continúan registrando los datos necesarios para los activos
         activo['nombre'] = input('Ingrese el nombre del activo: ')
         while True: #Verifica que el valor unitario sea un precio real
             try: 
@@ -189,7 +189,7 @@ def delActi():
         while True:
             scr.clean_screen()   
             code_to_del = input('Ingrese el codigo del activo que desea eliminar (ENTER para salir): ')
-            if code_to_del == '':
+            if code_to_del == '': #Si el valor ingresado es un espacio vacío se sale de esta sección
                 return  
             if code_to_del in filedata.keys():
                 for key, value in filedata[code_to_del].items():

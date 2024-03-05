@@ -9,16 +9,5 @@
             "personal": "78461",
             "oficina": "774631"
         }
-    },
-    "3": {
-        "id": "3",
-        "nombre": "caro",
-        "email": "caro1234@jasdsa.com",
-        "telefonos": {
-            "movil": "5415",
-            "casa": "84312",
-            "personal": "156489",
-            "oficina": "74895"
-        }
     }
 }

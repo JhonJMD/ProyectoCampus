@@ -4,28 +4,31 @@ import datetime
 
 nroId = 0
 
+#Función para retornar activos
 def returnActi():
     global nroId
     return_acti = True
     while return_acti:
-        file.check_file('activos.json')
-        acti_data = file.read_file('activos.json')
-        persona_data = file.read_file('personal.json')
-        asig_data = file.read_file('asignaciones.json')
+        file.check_file('activos.json') #Chequea que el archivo exista y si no existe lo crea
+        acti_data = file.read_file('activos.json') #Guarda el archivo json de activos en una variable python
+        persona_data = file.read_file('personal.json') #Guarda el archivo json de personal en una variable python
+        asig_data = file.read_file('asignaciones.json') #Guarda el archivo json de asignaciones en una variable python
         while True:
             scr.clean_screen()
             code_to_return = input('Ingrese el codigo del activo que desea retornar: ').upper()
+            #Verifica que el activo se encuentre registrado
             if code_to_return not in acti_data.keys():
                 print('El activo no se encuentra registrado, por favor verifique en la sección de activos del menú principal') 
                 scr.pause_screen()           
             else:
-                state = acti_data[code_to_return]['estado'] 
-                if state == '0':
-                    print('El activo ya ha sido retornado.')
+                state = acti_data[code_to_return]['estado'] #Guarda el estado del activo registrado
+                if state == '0': #Si el activo está no asignado
+                    print('El activo no se encuentra asignado')
                     scr.pause_screen()
-                elif state == '2':
+                elif state == '2': #Si el activo está dado de baja
                     print('El activo se encuentra de baja.')
                     scr.pause_screen()
+                #Para agregar el historial a dicho activo 
                 else:
                     nroId+=1
                     acti_data[code_to_return]['estado'] = '0'
@@ -48,24 +51,27 @@ def returnActi():
                     return_acti = False
                     break 
 
+#Función para dar de baja un activo
 def cancelActi():
     global nroId
     cancel_acti = True
     while cancel_acti:
+        #Chequear y cargar archivos en variables python
         file.check_file('activos.json')
         acti_data = file.read_file('activos.json')
         persona_data = file.read_file('personal.json')
         asig_data = file.read_file('asignaciones.json')
+        ##-----------------------------------------------
         while True:
             scr.clean_screen()
             code_to_cancel = input('Ingrese el código del activo que desea dar de baja: ')
-            if code_to_cancel not in acti_data.keys():
+            if code_to_cancel not in acti_data.keys(): #Verifica que el codigo se encuentre registrado
                 print('El activo no se encuentra registrado, por favor verifique en la sección de activos del menú principal') 
                 scr.pause_screen()           
                 break
             else:
-                state = acti_data[code_to_cancel]['estado'] 
-                if state == '2':
+                state = acti_data[code_to_cancel]['estado'] #Guarda el estado del activo ingresado
+                if state == '2': #Si el activo ya ha sido dado de baja
                     print('El activo ya ha sido dado de baja.')
                     scr.pause_screen()
                     break
@@ -75,6 +81,7 @@ def cancelActi():
                         print('El activo ya ha sido dado de baja')
                         scr.pause_screen()
                         break
+                    #Da de baja el activo y agrega el historial a dicho activo
                     else:
                         nroId+=1
                         acti_data[code_to_cancel]['estado'] = '2'
@@ -96,18 +103,20 @@ def cancelActi():
             elif yes_or_not == '':
                 cancel_acti = False
                 break 
-
+#Función para reasignar activos
 def changeAsig():
     global nroId
     change_acti = True
     while change_acti:
+        #Chequear y guardar archivos json en variables python
         file.check_file('activos.json')
         acti_data = file.read_file('activos.json')
         persona_data = file.read_file('personal.json')
         asig_data = file.read_file('asignaciones.json')
+        #---------------------------------------------------
         while True:
             scr.clean_screen()
-            code_to_change = input('Ingrese el código del activo que desea cambiar de asignación: ')
+            code_to_change = input('Ingrese el código del activo que desea cambiar de asignación: ') 
             if code_to_change not in acti_data.keys():
                 print('El activo no se encuentra registrado, por favor verifique en la sección de activos del menú principal') 
                 scr.pause_screen()           
@@ -148,6 +157,7 @@ def changeAsig():
                         change_acti = False
                         break 
 
+#Función para mandar a garantía
 def sendWarran():
     global nroId
     send_warran = True

@@ -1,6 +1,7 @@
 import modules.jsonfiles as file
 import modules.screen as scr
 from tabulate import tabulate
+import datetime
 
 
 
@@ -103,11 +104,13 @@ def createAsig():
                     id = input('Ingres el ID de la persona a la que se asigna el activo: ')
                     if len(asigdata) != 0:
                         for item in asigdata:
+                            #Verifica que la persona no tenga activos asignados
                             if id in item['asignado a']:
                                 print('Esta persona ya cuenta con un activo asignado\nSi desea reasignarle otro primero retorne el activo que ya está asignado y pase a asignarle el nuevo')
                                 scr.pause_screen()
                     else:
                         break
+                #Se asegura de que el id ingresado sea el que la persona desea realmente asignar
                 if id in personadata.keys():
                     name = personadata[id].get('nombre')
                     yesornot = input(f'El ID ingresado corresponde a {name}... ¿Está seguro que desea asignarlo? s(sí) - n(no): ').upper()
@@ -122,8 +125,69 @@ def createAsig():
                     print('El ID no se encuentra registrado, vuelva a intentarlo')
                     scr.pause_screen()
         if tipo == 'Z': #Empieza el bucle para ingresar la zona a la que se le asigna activos
-            pass
+            add_zone = True
+            while add_zone:
+                scr.clean_screen()
+                is_zone_correct = True
+                while is_zone_correct: 
+                    scr.clean_screen()
+                    zone = input('Ingrese el codigo de la zona a la que desea asignar activos: ')
+                    if zone in zonedata.keys():
+                        zone_name = zonedata[zone].get('nombrezona')
+                        asignacion['asignado a'] = zone_name
+                        scr.clean_screen()
+                        print('¡La zona fue asignada correctamente!')
+                        is_zone_correct = False
+                        add_zone = False
+                    else:
+                        print('La zona no se encuentra registrada')
+                        scr.pause_screen()
+        if tipo == 'Z': #Empieza el bucle necesario para ingresar activos a una zona 
+            nroId = 0
+            add_acti_zone = True
+            while add_acti_zone:
+                scr.clean_screen()
+                active = input('Ingrese el codigo del activo a asignar: ')
+                if (active in activdata.keys()) and (activdata[active]['estado'] == '0'):
+                    name = activdata[active].get('nombre') #Guarda el nombre del activo ingresado
+                    tipo = activdata[active].get('tipo') #Guarda el tipo del activo ingresado
+                    scr.clean_screen()
+                    print(f'nombre : {name}\ntipo : {tipo}')
+                    areyousure = input('¿Seguro que desea asignar este activo? s(sí) - n(no): ').upper()
+                    if areyousure == 'S':
+                        scr.clean_screen()
+                        asignacion['activo/s asignado'].append(active) #Actualiza el diccionario de asignacion
+                        activdata[active]['estado'] = '1' #Cambia el estado del activo a "asignado"
+                    if areyousure == 'N':
+                        scr.pause_screen()  
+                else: #Si el activo tuvo algún error
+                    scr.clean_screen()
+                    print('El activo ingresado posee alguno de estos problemas:\n*No se encuentra registrado\n*Ya se encuentra asignado\n*Se encuentra en reparacion y/o garantía\n*No se encuentra disponible debido a alguna falla ')
+                    print('Verifique el estado del activo en la sección buscar activo')
+                    scr.pause_screen() 
+                file.update_file('activos.json', activdata)              
+                asigdata.update({nro_asig: asignacion})
+                file.update_file('asignaciones.json', asigdata)
+                nroId+=1
+                movement = {
+                    'nroId': str(nroId).zfill(3),
+                    'fecha': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    'tipoMov': '1', 
+                    'idRespMov': '123'  
+                }
+                activdata[active]['historial'].update(movement)
+                file.update_file('activos.json', activdata)   
+                
+                while True:
+                    scr.clean_screen()
+                    yes_or_not = input('¿Desea registrar otro activo? s(sí) -- n(no): ').upper()
+                    if yes_or_not == 'S':
+                        break
+                    elif yes_or_not == 'N':
+                        add_acti_zone = False
+                        break              
         if tipo == 'P': #Empieza el bucle necesario para ingresar activos a una persona
+            nroId_2 = 0
             add_acti = True
             tipos = []
             while add_acti:
@@ -164,6 +228,15 @@ def createAsig():
         file.update_file('activos.json', activdata)              
         asigdata.update({nro_asig: asignacion})
         file.update_file('asignaciones.json', asigdata)
+        nroId_2+=1
+        movement = {
+            'nroId': str(nroId).zfill(3),
+            'fecha': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            'tipoMov': '1', 
+            'idRespMov': '123'  
+        }
+        activdata[active]['historial'].update(movement)
+        file.update_file('activos.json', activdata)   
         while True:
             scr.clean_screen()
             yes_or_not = input('¿Desea registrar otra asignación? s(sí) -- n(no): ').upper()
