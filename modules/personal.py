@@ -205,7 +205,7 @@ def searchPer():
                         if key != 'telefonos': #No deja que se imrpima el diccionario "Telefonos" en la tabla sino solo los valores que contiene
                             value = str(value)
                             info.append(value)
-                print(tabulate([info], headers=kys, tablefmt='grid'))
+                print(tabulate([info], headers=kys, tablefmt='fancy_grid'))
                 scr.pause_screen()
                 break       
             else:

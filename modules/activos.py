@@ -228,7 +228,7 @@ def searchActi():
         filedata = file.read_file('activos.json')
         while True:
             scr.clean_screen()
-            code_to_search = input('Ingrese el codigo del activo a buscar (ENTER para salir): ')
+            code_to_search = input('Ingrese el codigo del activo a buscar (ENTER para salir): ').upper()
             if code_to_search == '':
                 search_running = False
                 return
@@ -238,7 +238,7 @@ def searchActi():
                     if key != 'historial':
                         value = str(value)
                         info.append([value])
-                print(tabulate([info], headers=kys, tablefmt='grid'))
+                print(tabulate([info], headers=kys, tablefmt='fancy_grid'))
                 scr.pause_screen()
                 break       
             else:
