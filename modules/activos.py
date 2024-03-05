@@ -3,7 +3,7 @@ import modules.screen as scr
 from tabulate import tabulate
 
 #Función para agregar el contenido al diccionario de activos en el archivo json 
-def addActi(): 
+def addActi():
     is_add_active = True
     while is_add_active: 
         scr.clean_screen()
@@ -112,7 +112,7 @@ def addActi():
             elif yes_or_not == '':
                 is_add_active = False
                 break
-        
+
 #Función para modificar el contenido del archivo de activos.json
 def modifyActi():
     modify_running = True
