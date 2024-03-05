@@ -26,10 +26,10 @@
         "proveedor": "Compumax",
         "nro serial": 45123,
         "responsable": "CampusLands",
-        "estado": "0",
+        "estado": "2",
         "historial": {
             "nroId": "001",
-            "fecha": "2024-03-04 06:56:26",
+            "fecha": "2024-03-05 07:08:04",
             "tipoMov": "2",
             "idRespMov": "123"
         }
@@ -91,8 +91,13 @@
         "proveedor": "Compumax",
         "nro serial": 453,
         "responsable": "CampusLands",
-        "estado": "1",
-        "historial": {}
+        "estado": "0",
+        "historial": {
+            "nroId": "001",
+            "fecha": "2024-03-04 17:39:48",
+            "tipoMov": "2",
+            "idRespMov": "123"
+        }
     },
     "MON-4156": {
         "codigo": "MON-4156",

@@ -14,7 +14,7 @@ def returnActi():
         asig_data = file.read_file('asignaciones.json')
         while True:
             scr.clean_screen()
-            code_to_return = input('Ingrese el codigo del activo que desea retornar: ')
+            code_to_return = input('Ingrese el codigo del activo que desea retornar: ').upper()
             if code_to_return not in acti_data.keys():
                 print('El activo no se encuentra registrado, por favor verifique en la sección de activos del menú principal') 
                 scr.pause_screen()           
@@ -22,6 +22,9 @@ def returnActi():
                 state = acti_data[code_to_return]['estado'] 
                 if state == '0':
                     print('El activo ya ha sido retornado.')
+                    scr.pause_screen()
+                elif state == '2':
+                    print('El activo se encuentra de baja.')
                     scr.pause_screen()
                 else:
                     nroId+=1
@@ -71,6 +74,7 @@ def cancelActi():
                     if state == '2':
                         print('El activo ya ha sido dado de baja')
                         scr.pause_screen()
+                        break
                     else:
                         nroId+=1
                         acti_data[code_to_cancel]['estado'] = '2'
@@ -84,14 +88,14 @@ def cancelActi():
                         file.update_file('activos.json', acti_data)
                         print(f'Activo {code_to_cancel} dado de baja exitosamente.')
                         scr.pause_screen()
-                    while True:
-                        scr.clean_screen()
-                        yes_or_not = input('¿Desea dar de baja otro activo? s(sí) -- ENTER(no): ').upper()
-                        if yes_or_not == ('S'):
-                            break
-                        elif yes_or_not == '':
-                            cancel_acti = False
-                            break 
+        while True:
+            scr.clean_screen()
+            yes_or_not = input('¿Desea dar de baja otro activo? s(sí) -- ENTER(no): ')
+            if yes_or_not == ('S','s'):
+                break
+            elif yes_or_not == '':
+                cancel_acti = False
+                break 
 
 def changeAsig():
     global nroId

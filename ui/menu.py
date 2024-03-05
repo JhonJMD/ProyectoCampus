@@ -117,7 +117,7 @@ def menuZonas():
 def menuAsignacion():
     sc.clean_screen()
     t.headerAsignacion()
-    options = [['1.' ,'Crear Asignacion'], ['2.','Buscar Asignacion'], ['3.','Regresar Menu Princiapl']]
+    options = [['1.' ,'Crear Asignacion'], ['2.','Buscar Asignacion'], ['3.','Regresar Menu Principal']]
     print(tabulate(options, tablefmt='youtrack'))
     op = input('\n>> ')
     if (op == '1'):
@@ -137,14 +137,15 @@ def menuAsignacion():
 def menuReportes():
     sc.clean_screen()
     t.headerReportes()
-    options = [['1.' ,'Listar todos los Activos'], ['2.','Listar Activos por Categoria'], ['3.','Listar Activos dados de baja por daño'], ['4.','Listar Archivos y Asignaciones'], ['5.','Listar Historial de Movimiento de Activo'], ['6.','Regresar al Menu Principal']]
+    options = [['1.' ,'Listar todos los Activos'], ['2.','Listar Activos por Categoria'], ['3.','Listar Activos dados de baja por daño'], ['4.','Listar Activos y Asignaciones'], ['5.','Listar Historial de Movimiento de Activo'], ['6.','Regresar al Menu Principal']]
     print(tabulate(options, tablefmt='youtrack'))
     op = input('\n>> ')
     if (op =='1'):
         mr.listAllActi()
         menuReportes()
     elif (op == '2'):
-        mr.listActiCat()
+        cat = mr.menuCat()
+        mr.listActiCat(cat)
         menuReportes()
     elif (op == '3'):
         mr.listActiDama()
@@ -165,7 +166,7 @@ def menuReportes():
 
 def menuMovActi():
     sc.clean_screen()
-    t.headerMain()
+    t.headerMovActi()
     options = [['1.' ,'Retorno de Activo'], ['2.','Dar de Baja Activo'], ['3.','Cambiar Asignacion de Activo'], ['4.','Enviar a Garantia Activo'], ['5.','Regresar al Menu Principal']]
     print(tabulate(options, tablefmt='youtrack'))
     op = input('\n>> ')

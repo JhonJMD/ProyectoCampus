@@ -30,7 +30,7 @@ def createAsig():
                 nro_asig = int(input('Ingrese el número de asignación (0 para salir): '))
                 nro_asig = str(nro_asig)
                 asignacion['nro asignacion'] = nro_asig
-                if nro_asig == 0:
+                if nro_asig == '0':
                     return
                 if nro_asig in asigdata.keys():
                     print('Este número de asignación ya se encuentra registrado')
@@ -171,9 +171,7 @@ def createAsig():
                 break
             elif yes_or_not == 'N':
                 create_asig = False
-                break
-        
-                        
+                break                                
 
 def searchAsig():
     search_running = True

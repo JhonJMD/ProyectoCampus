@@ -3,20 +3,23 @@ import modules.jsonfiles as file
 import ui.title as t
 from tabulate import tabulate
 
-activo_data = file.read_file('activos.json')
+activos_data = file.read_file('activos.json')
 asig_data = file.read_file('asignaciones.json')
+
+def menutypelist():
+    scr.clean_screen()
+    t.headerMenuTypeList()
+    option = [['1.' ,'Categoria Equipo de Computo'], ['2.','Tipo de Equipo de Computo']]
+    print(tabulate(option, tablefmt='youtrack'))
+    op = input('\n>> ')
+    return op
 
 def menuCat():
     scr.clean_screen()
-    def menutypelist():
-        t.headerMenuTypeList()
-        option = [['1.' ,'Categoria Equipo de Computo'], ['2.','Tipo de Equipo de Computo']]
-        print(tabulate(option, tablefmt='youtrack'))
-        op = input('\n>> ')
-        return op
     op = menutypelist()
     if  op == '1':
-            pass
+        op = '0'
+        return op
     elif op == '2':
         scr.clean_screen()
         t.headerMenuCat()
@@ -25,28 +28,68 @@ def menuCat():
         op = input('\n>> ')
         return op
     else:
-        menutypelist()
+        menuCat()
 
 def listAllActi():
-    kys = ['Codigo','Nombre','CodTransaccion','Formulario','Marca','Categoria','Tipo','Valor Unitario','Proveedor','Nro Serial','Resposable','Estado']
-    info = []
-    for key, value in activo_data.items(): 
-        if key != 'historial':
-            value = str(value)
-            info.append(value)
-    print(tabulate([[info]], headers=kys, tablefmt='grid'))
+    scr.clean_screen()
+    kys = ['Codigo', 'Nombre', 'Transacción', 'Formulario', 'Marca', 'Categoría', 'Tipo', 'Valor und', 'Proveedor', 'Nro serial', 'Responsable', 'Estado']
+    rows = []  # Lista para contener filas de la tabla
+    for key, value in activos_data.items(): 
+        row = []  # Lista para contener valores de una fila
+        for v in value.values():
+            if isinstance(v, dict):
+                pass
+            else:
+                row.append(str(v))  # Añadir el valor a la fila
+        rows.append(row)  # Añadir la fila a la lista de filas
+    # Imprimir la tabla una vez que se haya construido todas las filas
+    print(tabulate(rows, headers=kys, tablefmt='fancy_grid'))
     scr.pause_screen()
 
-def listActiCat():
-    cat = menuCat()
-    print("Datos que contienen '{}' en la clave:".format(cat))
-    for clave, valor in activo_data.items():
-        print(clave, ":", valor)
-    scr.pause_screen()
-
+def listActiCat(cat):
+    tipo = ''
+    if cat == '1':
+        tipo = 'CPU'
+    if cat == '2':
+        tipo = 'Monitor'
+    if cat == '3':
+        tipo = 'Teclado'
+    if cat == '4':
+        tipo = 'Mouse'
+    if cat == '1' or cat == '2' or cat == '3' or cat == '4':
+        scr.clean_screen()
+        kys = ['Codigo', 'Nombre', 'Transacción', 'Formulario', 'Marca', 'Categoría', 'Tipo', 'Valor und', 'Proveedor', 'Nro serial', 'Responsable', 'Estado']
+        rows = []  # Lista para contener filas de la tabla
+        for key, value in activos_data.items(): 
+            row = []  # Lista para contener valores de una fila
+            if value['tipo'] == tipo:  # Check the condition here
+                for v in value.values():
+                    if isinstance(v, dict):
+                        pass
+                    else:
+                        row.append(v)  # Añadir el valor a la fila
+                rows.append(row)  # Añadir la fila a la lista de filas
+                # Imprimir la tabla una vez que se haya construido todas las filas
+        print(tabulate(rows, headers=kys, tablefmt='fancy_grid'))
+        scr.pause_screen()
+    elif cat == '0':
+        listAllActi()  
 
 def listActiDama():
-    pass
+    scr.clean_screen()
+    kys = ['Codigo', 'Nombre', 'Transacción', 'Formulario', 'Marca', 'Categoría', 'Tipo', 'Valor und', 'Proveedor', 'Nro serial', 'Responsable', 'Estado']
+    rows = []  
+    for key, value in activos_data.items(): 
+        if value['estado'] in ['2', '3']:  
+            row = [] 
+            for v in value.values():
+                if isinstance(v, dict):
+                    pass
+                else:
+                    row.append(v)
+            rows.append(row) 
+    print(tabulate(rows, headers=kys, tablefmt='fancy_grid'))
+    scr.pause_screen()
 
 def listActiAsig():
     pass

@@ -9,5 +9,12 @@
         "activo/s asignado": [
             "MON-1"
         ]
+    },
+    "545": {
+        "nro asignacion": "545",
+        "fecha asignacion": "31/2/2024",
+        "tipo asignacion": "Zona",
+        "asignado a": {},
+        "activo/s asignado": []
     }
 }
