@@ -105,13 +105,11 @@ def createAsig():
                     scr.clean_screen()
                     id = input('Ingres el ID de la persona a la que se asigna el activo: ')
                     if len(asigdata) != 0:
-                        for item in asigdata.values():
+                        for key, item in asigdata.items():
                             #Verifica que la persona no tenga activos asignados
                             if id in item['asignado a']:
                                 print('Esta persona ya cuenta con un activo asignado\nSi desea reasignarle otro primero retorne el activo que ya está asignado y pase a asignarle el nuevo')
                                 scr.pause_screen()
-                            else:
-                                isidcorrect = False
                                 break
                     else:
                         break
@@ -240,7 +238,7 @@ def createAsig():
             'tipoMov': '1', 
             'idRespMov': '123'  
         }
-        activdata[active]['historial'].update(movement)
+        activdata[activo]['historial'].update(movement)
         file.update_file('activos.json', activdata)   
         while True:
             scr.clean_screen()

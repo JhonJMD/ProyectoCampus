@@ -75,5 +75,16 @@
         "activo/s asignado": [
             "MON023"
         ]
+    },
+    "3": {
+        "nro asignacion": "3",
+        "fecha asignacion": "12/12/2023",
+        "tipo asignacion": "Persona",
+        "asignado a": {
+            "007": "JAMES BOOM"
+        },
+        "activo/s asignado": [
+            "MON032"
+        ]
     }
 }
