@@ -6,6 +6,7 @@ from tabulate import tabulate
 activos_data = file.read_file('activos.json')
 asig_data = file.read_file('asignaciones.json')
 
+#Funcion para menu de tipo de listado
 def menutypelist():
     scr.clean_screen()
     t.headerMenuTypeList()
@@ -14,6 +15,7 @@ def menutypelist():
     op = input('\n>> ')
     return op
 
+#Funcion para tipo de categoria
 def menuCat():
     scr.clean_screen()
     op = menutypelist()
@@ -30,6 +32,7 @@ def menuCat():
     else:
         menuCat()
 
+#Funcion para listar todos los activos
 def listAllActi():
     scr.clean_screen()
     kys = ['Codigo', 'Nombre', 'Transacción', 'Formulario', 'Marca', 'Categoría', 'Tipo', 'Valor und', 'Proveedor', 'Nro serial', 'Responsable', 'Estado']
@@ -46,6 +49,7 @@ def listAllActi():
     print(tabulate(rows, headers=kys, tablefmt='fancy_grid'))
     scr.pause_screen()
 
+#Funcion para activos por categoria
 def listActiCat(cat):
     tipo = ''
     if cat == '1':
@@ -75,6 +79,7 @@ def listActiCat(cat):
     elif cat == '0':
         listAllActi()  
 
+#Funcion para listar activos dados de baja
 def listActiDama():
     scr.clean_screen()
     kys = ['Codigo', 'Nombre', 'Transacción', 'Formulario', 'Marca', 'Categoría', 'Tipo', 'Valor und', 'Proveedor', 'Nro serial', 'Responsable', 'Estado']
@@ -91,8 +96,10 @@ def listActiDama():
     print(tabulate(rows, headers=kys, tablefmt='fancy_grid'))
     scr.pause_screen()
 
+#Funcion para listar activos y asignaciones
 def listActiAsig():
     pass
 
+#Funcion para listar historial de movimientos de un activo
 def listHistoMov():
     pass

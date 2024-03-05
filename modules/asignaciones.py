@@ -173,6 +173,7 @@ def createAsig():
                 create_asig = False
                 break                                
 
+#Funcion para buscar asignacion
 def searchAsig():
     search_running = True
     while search_running:

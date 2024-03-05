@@ -72,24 +72,18 @@ def cancelActi():
                     scr.pause_screen()
                     break
                 else:
-                    state = acti_data[code_to_cancel]['estado'] 
-                    if state == '2':
-                        print('El activo ya ha sido dado de baja')
-                        scr.pause_screen()
-                        break
-                    else:
-                        nroId+=1
-                        acti_data[code_to_cancel]['estado'] = '2'
-                        movement = {
-                            'nroId': str(nroId).zfill(3),
-                            'fecha': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                            'tipoMov': '2', 
-                            'idRespMov': '123'  
-                        }
-                        acti_data[code_to_cancel]['historial'].update(movement)
-                        file.update_file('activos.json', acti_data)
-                        print(f'Activo {code_to_cancel} dado de baja exitosamente.')
-                        scr.pause_screen()
+                    nroId+=1
+                    acti_data[code_to_cancel]['estado'] = '2'
+                    movement = {
+                        'nroId': str(nroId).zfill(3),
+                        'fecha': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                        'tipoMov': '2', 
+                        'idRespMov': '123'  
+                    }
+                    acti_data[code_to_cancel]['historial'].update(movement)
+                    file.update_file('activos.json', acti_data)
+                    print(f'Activo {code_to_cancel} dado de baja exitosamente.')
+                    scr.pause_screen()
         while True:
             scr.clean_screen()
             yes_or_not = input('¿Desea dar de baja otro activo? s(sí) -- ENTER(no): ')

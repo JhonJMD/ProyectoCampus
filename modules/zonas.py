@@ -3,6 +3,7 @@ import modules.jsonfiles as file
 import ui.title as t
 from tabulate import tabulate
 
+#Funcion menu de zonas
 def menuNameZone(zona : dict, filedata : dict):
     isNameEquals = False
     scr.clean_screen()
@@ -30,6 +31,7 @@ def menuNameZone(zona : dict, filedata : dict):
         scr.pause_screen()
         menuNameZone(zona, filedata)
 
+#Funcion para agregar zonas
 def addZone():
     is_add_zone = True
     while is_add_zone: 
@@ -79,6 +81,7 @@ def addZone():
                     print('Ya esta registrado este numero de Zona')
                     scr.pause_screen()
 
+#Funcion para modificar zonas
 def modifyZone():
     modify_running = True
     while modify_running:
@@ -127,6 +130,7 @@ def modifyZone():
                 modify_running = False
                 break
 
+#Fucion para eliminar zonas
 def delZone():
     del_zone = True
     while del_zone:
@@ -169,6 +173,7 @@ def delZone():
                 del_zone = False
                 break
 
+#Funcion para buscar zonas
 def searchZone():
     search_running = True
     while search_running:
