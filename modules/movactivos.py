@@ -4,6 +4,7 @@ import datetime
 
 nroId = 0
 
+#Funcion para retornar activos
 def returnActi():
     global nroId
     return_acti = True
@@ -48,6 +49,7 @@ def returnActi():
                     return_acti = False
                     break 
 
+#Funcion para dar debaja activos
 def cancelActi():
     global nroId
     cancel_acti = True
@@ -97,6 +99,7 @@ def cancelActi():
                 cancel_acti = False
                 break 
 
+#Funcion para cambiar asignacion de activos
 def changeAsig():
     global nroId
     change_acti = True
@@ -148,6 +151,7 @@ def changeAsig():
                         change_acti = False
                         break 
 
+#Funcion para regresar a activo a garantia
 def sendWarran():
     global nroId
     send_warran = True
