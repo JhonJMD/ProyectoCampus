@@ -3,7 +3,7 @@ import modules.screen as scr
 from tabulate import tabulate
 
 #Función para agregar el contenido al diccionario de activos en el archivo json 
-def addActi(): 
+def addActi():
     is_add_active = True
     while is_add_active: 
         scr.clean_screen()
@@ -112,7 +112,7 @@ def addActi():
             elif yes_or_not == '':
                 is_add_active = False
                 break
-        
+
 #Función para modificar el contenido del archivo de activos.json
 def modifyActi():
     modify_running = True
@@ -125,7 +125,7 @@ def modifyActi():
             break
         while True:
             scr.clean_screen()
-            code_to_modify = input('Ingrese el codigo del activo que desea modificar (ENTER para salir): ')
+            code_to_modify = input('Ingrese el codigo del activo que desea modificar (ENTER para salir): ').upper()
             
             if code_to_modify == '':
                 modify_running = False
@@ -176,6 +176,7 @@ def modifyActi():
 
 #Función para borrar un activo
 def delActi():
+    isfind = True
     del_acti = True
     while del_acti:
         scr.clean_screen()
@@ -188,26 +189,37 @@ def delActi():
             break
         while True:
             scr.clean_screen()   
+<<<<<<< HEAD
             code_to_del = input('Ingrese el codigo del activo que desea eliminar (ENTER para salir): ')
             if code_to_del == '': #Si el valor ingresado es un espacio vacío se sale de esta sección
+=======
+            code_to_del = input('Ingrese el codigo del activo que desea eliminar (ENTER para salir): ').upper()
+            if code_to_del == '':
+>>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
                 return  
             if code_to_del in filedata.keys():
                 for key, value in filedata[code_to_del].items():
-                    if key == 'nombre' or key == 'tipo' or key == 'estado':
-                        print(f'{key} : {value}')
+                    if filedata[code_to_del]['estado'] == '0':
+                        if key == 'nombre' or key == 'tipo' or key == 'estado':
+                            print(f'{key} : {value}')
+                            isfind = False
+                if isfind == True:
+                    print('El activo no se puede eliminar porque se encuentra asignado')
+                    scr.pause_screen()
                 break
             else:
                 print('El codigo ingresado no se encuentra registrado')
-                scr.pause_screen()    
-        while True:
-            print('')
-            yes_or_not = input('Seguro que desea eliminar este activo? s(sí) - n(no): ').upper()
-            if yes_or_not == 'S':
-                filedata.pop(code_to_del)
-                file.update_file('activos.json', filedata)
-                break
-            elif yes_or_not == 'N':
-                break
+                scr.pause_screen() 
+        if filedata[code_to_del]['estado'] == '0':   
+            while True:
+                print('')
+                yes_or_not = input('Seguro que desea eliminar este activo? s(sí) - n(no): ').upper()
+                if yes_or_not == 'S':
+                    filedata.pop(code_to_del)
+                    file.update_file('activos.json', filedata)
+                    break
+                elif yes_or_not == 'N':
+                    break
         while True:
             scr.clean_screen()
             yes_or_not = input('¿Desea eliminar otro activo? s(sí) - n(no): ').upper()
@@ -228,7 +240,7 @@ def searchActi():
         filedata = file.read_file('activos.json')
         while True:
             scr.clean_screen()
-            code_to_search = input('Ingrese el codigo del activo a buscar (ENTER para salir): ')
+            code_to_search = input('Ingrese el codigo del activo a buscar (ENTER para salir): ').upper()
             if code_to_search == '':
                 search_running = False
                 return
@@ -238,7 +250,7 @@ def searchActi():
                     if key != 'historial':
                         value = str(value)
                         info.append([value])
-                print(tabulate([info], headers=kys, tablefmt='grid'))
+                print(tabulate([info], headers=kys, tablefmt='fancy_grid'))
                 scr.pause_screen()
                 break       
             else:

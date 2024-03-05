@@ -246,6 +246,7 @@ def createAsig():
                 create_asig = False
                 break                                
 
+#Funcion para buscar asignacion
 def searchAsig():
     search_running = True
     while search_running:
@@ -265,7 +266,7 @@ def searchAsig():
                 for key, value in filedata[code_to_search].items(): 
                     value = str(value)
                     info.append(value)
-                print(tabulate([info], headers=kys, tablefmt='grid'))
+                print(tabulate([info], headers=kys, tablefmt='fancy_grid'))
                 scr.pause_screen()
                 break       
             else:
