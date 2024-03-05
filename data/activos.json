@@ -5591,8 +5591,18 @@
         "proveedor": "Compumax",
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
+<<<<<<< HEAD
+        "estado": "1",
+        "historial": {
+            "nroId": "001",
+            "fecha": "2024-03-04 17:39:48",
+            "tipoMov": "2",
+            "idRespMov": "123"
+        }
+=======
         "estado": "0",
         "historial": {}
+>>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
     },
     "MO002": {
         "codigo": "MO002",
@@ -5607,6 +5617,8 @@
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
         "estado": "0",
+<<<<<<< HEAD
+=======
         "historial": {}
     },
     "MO003": {
@@ -7437,6 +7449,7 @@
         "nro serial": "35465454554156454",
         "responsable": "CampusLands",
         "estado": "0",
+>>>>>>> 33bceffc572132726654e69357715dd2eaf0ec5e
         "historial": {}
     }
 }

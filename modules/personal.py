@@ -142,6 +142,7 @@ def modifyPer():
 def delPer():
     del_per = True
     while del_per:
+        asigdata = file.read_file('asignaciones.json')
         scr.clean_screen()
         file.check_file('personal.json')
         filedata = file.read_file('personal.json')  
@@ -152,11 +153,17 @@ def delPer():
             break
         while True:
             scr.clean_screen()   
-            id_to_del = input('Ingrese el ID del activo que desea eliminar (ENTER para salir): ')
-            if id_to_del == '':
+            persondel = input('Ingrese el ID de la persona que desea eliminar (ENTER para salir): ')
+            if persondel == '':
                 return  
-            if id_to_del in filedata.keys():
-                for key, value in filedata[id_to_del].items():
+            for key, value in asigdata.items():
+                if value['tipo asignacion'] == 'Persona':
+                    if persondel in value['asignado a'].keys():
+                        print('Esta persona no se puede eliminar porque tiene activos asignados, por favor verifique que no tenga nada asignado')
+                        scr.pause_screen()
+                        return
+            if persondel in filedata.keys():
+                for key, value in filedata[persondel].items():
                     if key == 'id' or key == 'nombre':
                         print(f'{key} : {value}')
                 break
@@ -167,7 +174,7 @@ def delPer():
             print('')
             yes_or_not = input('Seguro que desea eliminar esta persona? s(sí) - n(no): ').upper()
             if yes_or_not == 'S':
-                filedata.pop(id_to_del)
+                filedata.pop(persondel)
                 file.update_file('personal.json', filedata)
                 break
             elif yes_or_not == 'N':
